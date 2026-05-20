@@ -1,0 +1,12 @@
+{
+  // Cloudflare Workers – Static Assets deployment
+  // Docs: https://developers.cloudflare.com/workers/static-assets/
+  "name": "functionphysiotherapiezwei",
+  "compatibility_date": "2024-12-01",
+
+  // Serve everything in ./dist as static assets.
+  // No "main" entry needed – Workers Assets handles all requests directly.
+  "assets": {
+    "directory": "./dist"
+  }
+}

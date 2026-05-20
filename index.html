@@ -940,7 +940,8 @@
       color: var(--teal-dark);
       border: 1.5px solid rgba(26, 53, 64, 0.25);
       border-radius: 2px;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1rem;
+      min-height: 44px;
       font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.07em;
@@ -1193,8 +1194,12 @@
       border: none;
       cursor: pointer;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 5px;
-      padding: 4px;
+      padding: 11px;
+      min-width: 44px;
+      min-height: 44px;
       flex-shrink: 0;
     }
     .nav-hamburger span {
@@ -1237,9 +1242,13 @@
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
       .feature-inner { grid-template-columns: 1fr; gap: 3rem; }
       .feature-inner.reverse { direction: ltr; }
-      .feature-image { height: 380px; }
+      .feature-image { height: auto; aspect-ratio: 3/2; }
       .dark-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .footer-top { grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-brand { grid-column: 1 / -1; }
+      .hero-logo-wrap img { height: 110px; }
+      .google-reviews-header { align-items: flex-start; }
+      .google-review-card { width: calc(50% - 0.75rem); min-width: 0; }
     }
 
     @media (max-width: 768px) {
@@ -1254,11 +1263,15 @@
         padding: 0 1.5rem;
         gap: 1.5rem;
       }
-      .hero-ctas { align-items: flex-start; }
+      /* H-1: unlock hero headline from 50% constraint on mobile */
+      .hero-display { font-size: clamp(2.75rem, 10vw, 4.5rem); max-width: 100%; }
+      /* H-3: stack CTAs vertically so buttons never overflow on 375px */
+      .hero-ctas { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+      .btn-hero-primary, .btn-hero-ghost { justify-content: center; text-align: center; }
       .hero-logo-wrap img { height: 80px; }
-      .hero-display { font-size: clamp(2.75rem, 10vw, 4.5rem); }
 
-      .trust-separator { display: none; }
+      /* T-1: fix wrong class name — was .trust-separator, should be .trust-sep */
+      .trust-sep { display: none; }
       .trust-bar-inner { gap: 0.75rem; justify-content: center; }
 
       .services-section, .google-reviews-section { padding: 4rem 1.5rem; }
@@ -1266,7 +1279,10 @@
       .service-card { aspect-ratio: 1/1; }
 
       .feature-section, .dark-section { padding: 4rem 1.5rem; }
-      .feature-image { height: 300px; }
+      /* F-1: replace fixed height with responsive aspect-ratio */
+      .feature-image { height: auto; aspect-ratio: 4/3; }
+      /* D-1: prevent portrait image from becoming excessively tall on mobile */
+      .dark-image { aspect-ratio: 3/2; }
 
       .google-reviews-header { gap: 2rem; }
       .google-rating-bar { flex-direction: column; align-items: flex-start; gap: 1rem; }
@@ -1288,9 +1304,13 @@
 
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .footer-brand { grid-column: 1 / -1; }
+      /* FT-2: footer links touch target minimum 44px */
+      .footer-links a { padding: 0.625rem 0; min-height: 44px; display: flex; align-items: center; }
     }
 
     @media (max-width: 480px) {
+      /* H-2: tighter bottom offset on very small viewports */
+      .hero-content { bottom: 2rem; }
       .trust-item { font-size: 0.625rem; }
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
       .service-card { aspect-ratio: 4/5; }

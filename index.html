@@ -41,7 +41,10 @@
       -moz-osx-font-smoothing: grayscale;
       line-height: 1.5;
       font-size: 16px;
+      overflow-x: hidden;
     }
+
+    img { max-width: 100%; height: auto; }
 
     h1, h2, h3, h4 {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -577,11 +580,7 @@
     }
 
     .services-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
       margin-bottom: 3rem;
-      align-items: end;
     }
 
     .section-headline {
@@ -599,13 +598,49 @@
       color: rgba(26, 53, 64, 0.68);
     }
 
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+    .cards-slider-wrap {
+      position: relative;
     }
 
+    .cards-grid {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-behavior: smooth;
+    }
+
+    .cards-grid::-webkit-scrollbar { display: none; }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      border: none;
+      background: var(--teal-dark);
+      color: var(--cream);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 0.3s ease, background 0.2s ease;
+    }
+
+    .slider-btn:hover { background: var(--teal-mid); }
+    .slider-btn.slider-hidden { opacity: 0; pointer-events: none; }
+    .slider-btn-prev { left: -1.375rem; }
+    .slider-btn-next { right: -1.375rem; }
+
     .service-card {
+      flex: 0 0 calc(25% - 1.125rem);
       background: var(--white);
       border-radius: 2px;
       overflow: hidden;
@@ -1036,6 +1071,38 @@
       flex: 1;
     }
 
+    .reviews-widget-placeholder {
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed rgba(26, 53, 64, 0.18);
+      border-radius: 12px;
+      margin-top: 2.5rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .reviews-placeholder-text {
+      font-size: 1.0625rem;
+      color: rgba(26, 53, 64, 0.42);
+      font-style: italic;
+      line-height: 1.9;
+    }
+
+    .reviews-google-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: rgba(26, 53, 64, 0.45);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s ease;
+    }
+
+    .reviews-google-link:hover { color: var(--teal-dark); }
+
     /* ── CTA SECTION ── */
     .cta-section {
       background: rgba(44,83,100,0.90);
@@ -1103,14 +1170,14 @@
 
     .footer-top {
       display: grid;
-      grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 3rem;
       padding-bottom: 3.5rem;
       border-bottom: 1px solid rgba(181, 168, 152, 0.15);
     }
 
     .footer-brand img {
-      height: 72px;
+      height: 110px;
       filter: brightness(0) invert(1);
       margin-bottom: 1.25rem;
       object-fit: contain;
@@ -1238,8 +1305,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
-      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-card { flex: 0 0 calc(50% - 0.75rem); }
       .feature-inner { grid-template-columns: 1fr; gap: 3rem; }
       .feature-inner.reverse { direction: ltr; }
       .feature-image { height: auto; aspect-ratio: 3/2; }
@@ -1252,70 +1318,81 @@
     }
 
     @media (max-width: 768px) {
+      /* Nav */
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
 
-      .hero-content {
-        flex-direction: column;
-        align-items: flex-start;
-        bottom: 2.5rem;
-        padding: 0 1.5rem;
-        gap: 1.5rem;
-      }
-      /* H-1: unlock hero headline from 50% constraint on mobile */
+      /* Hero */
+      .hero-content { flex-direction: column; align-items: flex-start; bottom: 2.5rem; padding: 0 1.5rem; gap: 1.5rem; }
       .hero-display { font-size: clamp(2.75rem, 10vw, 4.5rem); max-width: 100%; }
-      /* H-3: stack CTAs vertically so buttons never overflow on 375px */
       .hero-ctas { flex-direction: column; align-items: stretch; gap: 0.75rem; }
-      .btn-hero-primary, .btn-hero-ghost { justify-content: center; text-align: center; }
+      .btn-hero-primary, .btn-hero-ghost { justify-content: center; text-align: center; min-height: 44px; }
       .hero-logo-wrap img { height: 80px; }
 
-      /* T-1: fix wrong class name — was .trust-separator, should be .trust-sep */
+      /* Trust bar – wrap text, hide separators */
       .trust-sep { display: none; }
-      .trust-bar-inner { gap: 0.75rem; justify-content: center; }
+      .trust-bar-inner { gap: 0.375rem 1rem; justify-content: center; flex-wrap: wrap; }
+      .trust-item { font-size: 0.8125rem; text-align: center; white-space: normal; }
 
-      .services-section, .google-reviews-section { padding: 4rem 1.5rem; }
-      .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-      .service-card { aspect-ratio: 1/1; }
-
-      .feature-section, .dark-section { padding: 4rem 1.5rem; }
-      /* F-1: replace fixed height with responsive aspect-ratio */
-      .feature-image { height: auto; aspect-ratio: 4/3; }
-      /* D-1: prevent portrait image from becoming excessively tall on mobile */
-      .dark-image { aspect-ratio: 3/2; }
-
-      .google-reviews-header { gap: 2rem; }
-      .google-rating-bar { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .google-rating-divider { display: none; }
-      .google-cards-grid {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
+      /* Services – vertical stack on mobile */
+      .services-section, .google-reviews-section { padding: 5rem 1.5rem; }
+      .cards-slider-wrap { padding: 0; }
+      .cards-grid {
+        flex-direction: column;
+        overflow-x: visible;
+        scroll-snap-type: none;
         gap: 1rem;
-        padding-bottom: 1rem;
       }
-      .google-cards-grid::-webkit-scrollbar { display: none; }
-      .google-review-card { width: 80vw; min-width: 280px; flex-shrink: 0; scroll-snap-align: start; }
+      .service-card {
+        flex: 0 0 auto;
+        width: 100%;
+        aspect-ratio: 3/4;
+        scroll-snap-align: none;
+      }
+      .slider-btn { display: none; }
 
-      .cta-section { padding: 4rem 1.5rem; }
-      .cta-actions { flex-direction: column; align-items: center; gap: 1rem; }
+      /* Konzept dark section */
+      .feature-section, .dark-section { padding: 5rem 1.5rem; }
+      .dark-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .feature-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .feature-image { height: auto; aspect-ratio: 4/3; }
+      .dark-image { aspect-ratio: 3/2; }
+      .dark-section .btn-primary {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        text-align: center;
+        min-height: 44px;
+      }
 
+      /* Google reviews placeholder */
+      .google-reviews-header { gap: 2rem; }
+      .reviews-widget-placeholder { min-height: 200px; }
+      .reviews-placeholder-text { font-size: 1rem; }
+
+      /* CTA */
+      .cta-section { padding: 5rem 1.5rem; }
+      .cta-headline { font-size: clamp(1.4rem, 6vw, 2.2rem); }
+      .cta-actions { flex-direction: column; align-items: stretch; gap: 1rem; }
+      .cta-actions a { width: 100%; box-sizing: border-box; justify-content: center; text-align: center; min-height: 44px; }
+
+      /* Footer */
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .footer-brand { grid-column: 1 / -1; }
-      /* FT-2: footer links touch target minimum 44px */
+      .footer-brand { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+      .footer-brand img { height: 75px; }
+      .footer-top > div:last-child { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; }
       .footer-links a { padding: 0.625rem 0; min-height: 44px; display: flex; align-items: center; }
     }
 
     @media (max-width: 480px) {
-      /* H-2: tighter bottom offset on very small viewports */
       .hero-content { bottom: 2rem; }
-      .trust-item { font-size: 0.625rem; }
-      .cards-grid { grid-template-columns: repeat(2, 1fr); }
-      .service-card { aspect-ratio: 4/5; }
+      .trust-item { font-size: 0.75rem; }
+      .service-card { width: 100%; aspect-ratio: 3/4; }
       .footer-top { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+      .footer-top > div:last-child { grid-column: auto; }
+      .footer-bottom { flex-direction: column; align-items: center; gap: 0.75rem; text-align: center; }
     }
   </style>
 </head>
@@ -1380,15 +1457,11 @@
   <!-- ── TRUST BAR ── -->
   <div class="trust-bar">
     <div class="trust-bar-inner">
-      <span class="trust-item">Kassenärztlich anerkannt</span>
+      <span class="trust-item">Gesetzliche &amp; private Krankenkassen</span>
       <span class="trust-sep"></span>
-      <span class="trust-item">Alle Krankenkassen</span>
+      <span class="trust-item">Selbstzahler</span>
       <span class="trust-sep"></span>
-      <span class="trust-item">Ausgebildete Therapeuten</span>
-      <span class="trust-sep"></span>
-      <span class="trust-item">Modernste Gerätemedizin</span>
-      <span class="trust-sep"></span>
-      <span class="trust-item">Individuelle Therapiepläne</span>
+      <span class="trust-item">Individuelle Therapie</span>
     </div>
   </div>
 
@@ -1398,62 +1471,54 @@
       <div class="services-header">
         <div>
           <div class="section-label anim-el">Unsere Leistungen</div>
-          <h2 class="section-headline anim-el" data-delay="1">Ganzkörper-Gesundheit beginnt mit Bewegung.</h2>
-        </div>
-        <div>
-          <p class="section-desc anim-el" data-delay="2">Unsere ganzheitlichen Therapiekonzepte kombinieren modernste Behandlungsmethoden mit fundiertem medizinischem Wissen — für einen Körper, der sich wieder wie er selbst anfühlt.</p>
-          <a href="leistungen.html" class="btn-primary anim-el" data-delay="3" style="margin-top: 1.75rem;">Alle Leistungen</a>
+          <h2 class="section-headline anim-el" data-delay="1">Bewegung ist Funktion, Funktion ist Lebensqualität.</h2>
         </div>
       </div>
-      <div class="cards-grid">
-        <a href="leistungen.html#manuelle-therapie" class="service-card" tabindex="0" style="text-decoration:none;">
-          <img src="https://placehold.co/400x533/2c5364/d6cec6" alt="Manuelle Therapie">
-          <div class="service-card-overlay"></div>
-          <div class="service-card-content">
-            <div class="service-card-tag">Behandlung</div>
-            <div class="service-card-title">Manuelle Therapie</div>
-          </div>
-        </a>
-        <a href="leistungen.html#krankengymnastik" class="service-card" tabindex="0" style="text-decoration:none;">
-          <img src="https://placehold.co/400x533/1a3540/b5a898" alt="Krankengymnastik">
-          <div class="service-card-overlay"></div>
-          <div class="service-card-content">
-            <div class="service-card-tag">Rehabilitation</div>
-            <div class="service-card-title">Krankengymnastik</div>
-          </div>
-        </a>
-        <a href="leistungen.html#kgg" class="service-card" tabindex="0" style="text-decoration:none;">
-          <img src="https://placehold.co/400x533/2c5364/f7f4f0" alt="Gerätegestützte Therapie">
-          <div class="service-card-overlay"></div>
-          <div class="service-card-content">
-            <div class="service-card-tag">Gerätemedizin</div>
-            <div class="service-card-title">KGG — Gerätegestützt</div>
-          </div>
-        </a>
-        <a href="leistungen.html#coaching" class="service-card" tabindex="0" style="text-decoration:none;">
-          <img src="https://placehold.co/400x533/1a3540/d6cec6" alt="Bewegungs-Coaching">
-          <div class="service-card-overlay"></div>
-          <div class="service-card-content">
-            <div class="service-card-tag">Prävention</div>
-            <div class="service-card-title">Bewegungs-Coaching</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FEATURE SECTION ── -->
-  <section class="feature-section">
-    <div class="feature-inner">
-      <div>
-        <div class="section-label anim-el">Unsere Methode</div>
-        <h2 class="feature-headline anim-el" data-delay="1">Essentielle Bausteine für Ihre Gesundheit und Mobilität.</h2>
-        <p class="feature-desc anim-el" data-delay="2">Wir kombinieren bewährte manuelle Techniken, aktive Übungstherapie und modernste Gerätemedizin zu einem ganzheitlichen Behandlungsansatz, der langfristig wirkt.</p>
-        <a href="#" class="btn-primary anim-el" data-delay="3">Termin vereinbaren</a>
-      </div>
-      <div class="feature-image">
-        <img src="https://placehold.co/480x600/ede8e2/2c5364" alt="Physiotherapie Methode">
-        <div class="feature-image-overlay"></div>
+      <div class="cards-slider-wrap">
+        <button class="slider-btn slider-btn-prev slider-hidden" aria-label="Zurück">&#8592;</button>
+        <div class="cards-grid">
+          <a href="leistungen.html#manuelle-therapie" class="service-card" tabindex="0" style="text-decoration:none;">
+            <img src="https://placehold.co/400x533/2c5364/d6cec6" alt="Manuelle Therapie">
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <div class="service-card-tag">Behandlung</div>
+              <div class="service-card-title">Manuelle Therapie</div>
+            </div>
+          </a>
+          <a href="leistungen.html#krankengymnastik" class="service-card" tabindex="0" style="text-decoration:none;">
+            <img src="https://placehold.co/400x533/1a3540/b5a898" alt="Krankengymnastik">
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <div class="service-card-tag">Rehabilitation</div>
+              <div class="service-card-title">Krankengymnastik</div>
+            </div>
+          </a>
+          <a href="leistungen.html#kgg" class="service-card" tabindex="0" style="text-decoration:none;">
+            <img src="https://placehold.co/400x533/2c5364/f7f4f0" alt="Gerätegestützte Therapie">
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <div class="service-card-tag">Gerätetraining</div>
+              <div class="service-card-title">KG-Geräte (KGG)</div>
+            </div>
+          </a>
+          <a href="leistungen.html#mld" class="service-card" tabindex="0" style="text-decoration:none;">
+            <img src="https://placehold.co/400x533/1e4a52/d6cec6" alt="Manuelle Lymphdrainage">
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <div class="service-card-tag">Entstauungstherapie</div>
+              <div class="service-card-title">Manuelle Lymphdrainage</div>
+            </div>
+          </a>
+          <a href="leistungen.html#personal-training" class="service-card" tabindex="0" style="text-decoration:none;">
+            <img src="https://placehold.co/400x533/1a3540/d6cec6" alt="Personal Training">
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <div class="service-card-tag">Prävention</div>
+              <div class="service-card-title">Personal Training</div>
+            </div>
+          </a>
+        </div>
+        <button class="slider-btn slider-btn-next" aria-label="Weiter">&#8594;</button>
       </div>
     </div>
   </section>
@@ -1462,10 +1527,10 @@
   <section class="dark-section">
     <div class="dark-inner">
       <div>
-        <div class="dark-label anim-el">Wissenschaft & Präzision</div>
-        <h2 class="dark-headline anim-el" data-delay="1">Die meisten Schmerzen haben eine Ursache — <em>wir finden sie.</em></h2>
-        <p class="dark-desc anim-el" data-delay="2">Durch präzise Diagnostik und evidenzbasierte Therapiemethoden identifizieren wir die Wurzel Ihrer Beschwerden und behandeln nicht nur Symptome — sondern deren Ursache.</p>
-        <a href="#" class="btn-primary light anim-el" data-delay="3">Mehr über unsere Methoden</a>
+        <div class="dark-label anim-el">Unser Konzept</div>
+        <h2 class="dark-headline anim-el" data-delay="1">Evidenzbasierte Therapie, die wirklich wirkt.</h2>
+        <p class="dark-desc anim-el" data-delay="2">Bei Function Physiotherapie arbeiten wir konsequent evidenzbasiert – jede Behandlung folgt aktuellen wissenschaftlichen Erkenntnissen und wird individuell auf Sie abgestimmt. Wir verbinden manuelle Therapie, aktive Bewegungstherapie und moderne Gerätemedizin zu einem klaren, nachvollziehbaren Konzept – damit Sie nicht nur kurzfristig Linderung spüren, sondern langfristig in Bewegung bleiben.</p>
+        <a href="#" class="btn-primary light anim-el" data-delay="3">Mehr erfahren</a>
       </div>
       <div class="dark-image">
         <img src="https://placehold.co/480x600/2c5364/f7f4f0" alt="Diagnostik">
@@ -1480,147 +1545,21 @@
       <div class="google-reviews-header">
         <div>
           <div class="section-label anim-el">Google Bewertungen</div>
-          <h2 class="google-reviews-headline anim-el" data-delay="1">Was unsere Patienten über uns sagen.</h2>
-        </div>
-        <div class="google-rating-bar">
-          <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-          </svg>
-          <div class="google-rating-score">
-            <span class="google-rating-num">5,0</span>
-            <div class="google-stars-row">
-              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            </div>
-            <span class="google-rating-count">12 Bewertungen</span>
-          </div>
-          <div class="google-rating-divider"></div>
-          <a href="#" class="btn-google">
-            Auf Google bewerten
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <h2 class="google-reviews-headline anim-el" data-delay="1">Was unsere Patienten sagen.</h2>
         </div>
       </div>
 
-      <div class="google-cards-grid">
+      <!-- ELFSIGHT GOOGLE REVIEWS WIDGET: Platzhalter-div unten durch Elfsight-Embed-Code ersetzen. Widget-Code von elfsight.com generieren, dann das div.reviews-widget-placeholder durch den Elfsight-Snippet austauschen. -->
+      <div class="reviews-widget-placeholder">
+        <p class="reviews-placeholder-text">
+          Hier könnte Ihre 5-Sterne-Bewertung stehen. ⭐<br>
+          Wir arbeiten noch daran, uns die ersten zu verdienen –<br>
+          Sie könnten der Erste sein!
+        </p>
+      </div>
 
-        <!-- Review 1 -->
-        <div class="google-review-card">
-          <div class="review-card-top">
-            <div class="review-card-user">
-              <div class="review-avatar">A</div>
-              <div>
-                <div class="review-name">A. Müller</div>
-                <div class="review-date">vor 2 Wochen</div>
-              </div>
-            </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:0.5">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-          </div>
-          <div class="google-stars-row">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          </div>
-          <p class="review-text">Ich war nach einem Sportunfall in Behandlung und bin absolut begeistert. Die Therapeuten haben präzise gearbeitet und mir genau erklärt, was sie tun und warum. Nach wenigen Wochen war ich wieder schmerzfrei.</p>
-        </div>
-
-        <!-- Review 2 -->
-        <div class="google-review-card">
-          <div class="review-card-top">
-            <div class="review-card-user">
-              <div class="review-avatar">K</div>
-              <div>
-                <div class="review-name">K. Larsen</div>
-                <div class="review-date">vor 1 Monat</div>
-              </div>
-            </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:0.5">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-          </div>
-          <div class="google-stars-row">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          </div>
-          <p class="review-text">Endlich eine Praxis, die wirklich zuhört. Mein chronisches Rückenproblem wurde von Grund auf behandelt — nicht nur die Symptome. Sehr professionelles und einfühlsames Team.</p>
-        </div>
-
-        <!-- Review 3 -->
-        <div class="google-review-card">
-          <div class="review-card-top">
-            <div class="review-card-user">
-              <div class="review-avatar">M</div>
-              <div>
-                <div class="review-name">M. Hoffmann</div>
-                <div class="review-date">vor 3 Wochen</div>
-              </div>
-            </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:0.5">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-          </div>
-          <div class="google-stars-row">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          </div>
-          <p class="review-text">Professionell, freundlich und vor allem wirksam. Bereits nach 4 Sitzungen deutliche Besserung meiner Schulterschmerzen. Ich kann diese Praxis uneingeschränkt empfehlen.</p>
-        </div>
-
-        <!-- Review 4 -->
-        <div class="google-review-card">
-          <div class="review-card-top">
-            <div class="review-card-user">
-              <div class="review-avatar">S</div>
-              <div>
-                <div class="review-name">S. Peters</div>
-                <div class="review-date">vor 2 Monaten</div>
-              </div>
-            </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:0.5">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-          </div>
-          <div class="google-stars-row">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          </div>
-          <p class="review-text">Das Team ist unglaublich kompetent. Die Kombination aus manueller Therapie und einem individuellen Übungsprogramm hat mir wirklich geholfen. Ich bin sehr dankbar.</p>
-        </div>
-
-        <!-- Review 5 -->
-        <div class="google-review-card">
-          <div class="review-card-top">
-            <div class="review-card-user">
-              <div class="review-avatar">J</div>
-              <div>
-                <div class="review-name">J. Weber</div>
-                <div class="review-date">vor 5 Wochen</div>
-              </div>
-            </div>
-            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:0.5">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-          </div>
-          <div class="google-stars-row">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          </div>
-          <p class="review-text">Beste Physiotherapie, die ich je hatte. Ich komme inzwischen zur Prävention und fühle mich top. Das ganze Team ist herzlich und man merkt, dass sie wirklich Freude an ihrer Arbeit haben.</p>
-        </div>
-
+      <div style="text-align: center;">
+        <a href="#" class="reviews-google-link">Auf Google bewerten →</a>
       </div>
     </div>
   </section>
@@ -1629,7 +1568,7 @@
   <section class="cta-section">
     <div class="cta-inner">
       <div class="section-label" style="justify-content: center;">Jetzt starten</div>
-      <h2 class="cta-headline">Starten Sie Ihre persönliche Recovery-Routine.</h2>
+      <h2 class="cta-headline">Lassen Sie uns gemeinsam an Ihren Gesundheitszielen arbeiten.</h2>
       <p class="cta-desc">Vereinbaren Sie jetzt Ihren ersten Termin und lassen Sie uns gemeinsam den Weg zu einem gesunden, beweglichen Körper gehen.</p>
       <div class="cta-actions">
         <a href="#" class="btn-primary">Termin buchen</a>
@@ -1644,25 +1583,22 @@
       <div class="footer-top">
         <div class="footer-brand">
           <img src="brand assets/Logo_erste Idee_ohne Hintergrund.png" alt="Function Physiotherapie">
-          <p class="footer-tagline">Evidenzbasierte Physiotherapie für einen Körper, der sich wieder wie er selbst anfühlt.</p>
         </div>
         <div>
           <p class="footer-col-title">Leistungen</p>
           <ul class="footer-links">
-            <li><a href="#">Manuelle Therapie</a></li>
-            <li><a href="#">Sportrehabilitation</a></li>
-            <li><a href="#">Schmerztherapie</a></li>
-            <li><a href="#">Bewegungstherapie</a></li>
-            <li><a href="#">Prävention</a></li>
+            <li><a href="leistungen.html#manuelle-therapie">Manuelle Therapie</a></li>
+            <li><a href="leistungen.html#krankengymnastik">Krankengymnastik</a></li>
+            <li><a href="leistungen.html#kgg">KGG – Gerätegestützt</a></li>
+            <li><a href="leistungen.html#mld">Manuelle Lymphdrainage</a></li>
+            <li><a href="leistungen.html#personal-training">Personal Training</a></li>
           </ul>
         </div>
         <div>
-          <p class="footer-col-title">Praxis</p>
+          <p class="footer-col-title">Über uns</p>
           <ul class="footer-links">
-            <li><a href="#">Über uns</a></li>
             <li><a href="#">Team</a></li>
-            <li><a href="#">Ausstattung</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="#">Praxis</a></li>
           </ul>
         </div>
         <div>
@@ -1674,20 +1610,13 @@
             <li><a href="#">FAQ</a></li>
           </ul>
         </div>
-        <div>
-          <p class="footer-col-title">Rechtliches</p>
-          <ul class="footer-links">
-            <li><a href="#">Impressum</a></li>
-            <li><a href="#">Datenschutz</a></li>
-            <li><a href="#">AGB</a></li>
-          </ul>
-        </div>
       </div>
       <div class="footer-bottom">
         <p class="footer-copy">© 2026 Function Physiotherapie. Alle Rechte vorbehalten.</p>
         <div class="footer-legal">
-          <a href="#">Impressum</a>
+          <a href="#">AGB</a>
           <a href="#">Datenschutz</a>
+          <a href="#">Impressum</a>
         </div>
       </div>
     </div>
@@ -1828,6 +1757,37 @@
     document.querySelectorAll('.anim-el').forEach(function(el) {
       animObserver.observe(el);
     });
+  })();
+
+  (function() {
+    var grid = document.querySelector('.cards-grid');
+    var btnPrev = document.querySelector('.slider-btn-prev');
+    var btnNext = document.querySelector('.slider-btn-next');
+    if (!grid || !btnPrev || !btnNext) return;
+
+    function cardScrollAmount() {
+      var card = grid.querySelector('.service-card');
+      if (!card) return 300;
+      var gap = parseFloat(getComputedStyle(grid).gap) || 24;
+      return card.offsetWidth + gap;
+    }
+
+    function updateBtns() {
+      var sl = grid.scrollLeft;
+      var max = grid.scrollWidth - grid.clientWidth;
+      btnPrev.classList.toggle('slider-hidden', sl <= 1);
+      btnNext.classList.toggle('slider-hidden', sl >= max - 1);
+    }
+
+    btnPrev.addEventListener('click', function() {
+      grid.scrollBy({ left: -cardScrollAmount(), behavior: 'smooth' });
+    });
+    btnNext.addEventListener('click', function() {
+      grid.scrollBy({ left: cardScrollAmount(), behavior: 'smooth' });
+    });
+
+    grid.addEventListener('scroll', updateBtns, { passive: true });
+    updateBtns();
   })();
   </script>
 

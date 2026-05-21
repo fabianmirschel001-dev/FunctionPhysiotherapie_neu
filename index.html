@@ -101,14 +101,6 @@
       transition: opacity 0.6s ease;
     }
 
-    nav.nav-hero .nav-home-label {
-      opacity: 1;
-      pointer-events: auto;
-      color: rgba(255,255,255,0.75);
-    }
-
-    nav.nav-hero .nav-home-label:hover { color: #fff; }
-
     nav.nav-hero .nav-home-img {
       opacity: 0;
     }
@@ -122,7 +114,8 @@
       display: flex;
       align-items: center;
       gap: 2rem;
-      margin: 0 auto;
+      flex: 1;
+      justify-content: center;
     }
 
     .nav-links a {
@@ -182,7 +175,14 @@
       flex-shrink: 0;
       font-family: 'Inter', sans-serif;
       box-shadow: 0 2px 12px rgba(26, 53, 64, 0.25);
-      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      opacity: 0;
+      pointer-events: none;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+    }
+
+    .nav-cta.cta-visible {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .nav-cta:hover {
@@ -1326,15 +1326,16 @@
     <a href="#" class="nav-logo">
       <img src="brand assets/Logo_erste Idee_ohne Hintergrund.png" alt="Function Physiotherapie">
     </a>
+    <a href="#" class="nav-home" aria-label="Startseite">
+      <span class="nav-home-label">Home</span>
+      <img class="nav-home-img" src="brand assets/Logo_erste Idee_ohne Hintergrund.png" alt="Function Physiotherapie">
+    </a>
     <div class="nav-links">
-      <a href="#" class="nav-home" aria-label="Startseite">
-        <span class="nav-home-label">Home</span>
-        <img class="nav-home-img" src="brand assets/Logo_erste Idee_ohne Hintergrund.png" alt="Function Physiotherapie">
-      </a>
-      <a href="leistungen.html">Leistungen</a>
-      <a href="#">Therapie</a>
-      <a href="#">Team</a>
-      <a href="#">Wissen</a>
+      <a href="#">Home</a>
+      <a href="#konzept">Konzept</a>
+      <a href="leistungen.html">Leistungen &amp; Preise</a>
+      <a href="#team">Team</a>
+      <a href="#kontakt">Kontakt</a>
     </div>
     <button class="nav-cta">Termin buchen</button>
     <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
@@ -1343,10 +1344,11 @@
   </nav>
 
   <div class="mobile-menu-overlay" aria-hidden="true">
-    <a href="leistungen.html">Leistungen</a>
-    <a href="#">Therapie</a>
-    <a href="#">Team</a>
-    <a href="#">Wissen</a>
+    <a href="#">Home</a>
+    <a href="#konzept">Konzept</a>
+    <a href="leistungen.html">Leistungen &amp; Preise</a>
+    <a href="#team">Team</a>
+    <a href="#kontakt">Kontakt</a>
     <a href="#kontakt" class="btn-primary" style="text-decoration:none;display:inline-block;margin-top:2rem;">Termin buchen</a>
   </div>
 
@@ -1797,6 +1799,18 @@
       }
       updateNav();
       window.addEventListener('scroll', updateNav, { passive: true });
+    }
+
+    var navCta = document.querySelector('.nav-cta');
+    if (navCta && heroNew) {
+      new IntersectionObserver(function(entries) {
+        var entry = entries[0];
+        if (entry.isIntersecting) {
+          navCta.classList.remove('cta-visible');
+        } else if (entry.boundingClientRect.bottom < 0) {
+          navCta.classList.add('cta-visible');
+        }
+      }, { threshold: 0 }).observe(heroNew);
     }
   })();
   </script>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt | Function Physiotherapie</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <a href="index.html" class="nav-home" aria-label="Startseite">
+      <img class="nav-home-img" src="brand assets/Logo_erste Idee_ohne Hintergrund.png" alt="Function Physiotherapie">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="konzept.html">Konzept</a>
+      <a href="leistungen.html">Leistungen &amp; Preise</a>
+      <a href="team.html">Team</a>
+      <a href="kontakt.html" class="active">Kontakt</a>
+    </div>
+    <a href="kontakt.html" class="nav-cta cta-visible" style="text-decoration:none;">Termin buchen</a>
+    <button class="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu-overlay" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="konzept.html">Konzept</a>
+    <a href="leistungen.html">Leistungen &amp; Preise</a>
+    <a href="team.html">Team</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a href="kontakt.html" class="btn-primary" style="text-decoration:none;display:inline-block;margin-top:2rem;">Termin buchen</a>
+  </div>
+
+  <main>
+
+    <!-- ── SECTION 1: HERO ── -->
+    <section class="page-hero-narrow">
+      <div class="page-hero-narrow-inner">
+        <div class="section-label">Kontakt</div>
+        <h1 class="page-hero-title">Wir freuen uns auf Sie.</h1>
+      </div>
+    </section>
+
+    <!-- ── SECTION 2: CONTACT LAYOUT ── -->
+    <section class="content-section light-section">
+      <div class="content-inner contact-layout">
+        <div class="contact-form-col">
+          <!-- FORMULAR: Formspree oder eigenen Endpoint hier einbinden, action="" entsprechend setzen -->
+          <form class="contact-form" action="" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="vorname">Vorname</label>
+                <input type="text" id="vorname" name="vorname" required>
+              </div>
+              <div class="form-group">
+                <label for="nachname">Nachname</label>
+                <input type="text" id="nachname" name="nachname" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="telefon">Telefon <span class="optional">(optional)</span></label>
+              <input type="tel" id="telefon" name="telefon">
+            </div>
+            <div class="form-group">
+              <label for="anliegen">Anliegen</label>
+              <select id="anliegen" name="anliegen">
+                <option value="terminanfrage">Terminanfrage</option>
+                <option value="behandlungsfrage">Frage zur Behandlung</option>
+                <option value="sonstiges">Sonstiges</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="nachricht">Ihre Nachricht</label>
+              <textarea id="nachricht" name="nachricht" rows="5" required></textarea>
+            </div>
+            <div class="form-group form-checkbox">
+              <input type="checkbox" id="datenschutz" name="datenschutz" required>
+              <label for="datenschutz">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.</label>
+            </div>
+            <button type="submit" class="btn-primary">Nachricht senden</button>
+          </form>
+        </div>
+        <div class="contact-info-col">
+          <h3 class="contact-info-title">Erreichbarkeit</h3>
+          <div class="contact-info-block">
+            <p class="contact-info-label">Öffnungszeiten</p>
+            <p>Mo–Fr: 08:00 – 19:00 Uhr</p>
+            <p>Sa: nach Vereinbarung</p>
+            <p>So: geschlossen</p>
+          </div>
+          <div class="contact-info-block">
+            <p class="contact-info-label">Telefon</p>
+            <p>+49 (0) XXX XXXXXXX</p>
+          </div>
+          <div class="contact-info-block">
+            <p class="contact-info-label">E-Mail</p>
+            <p>info@function-physio.de</p>
+          </div>
+          <div class="contact-info-block">
+            <p class="contact-info-label">Adresse</p>
+            <p>Musterstraße 1<br>12345 Musterstadt</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 3: FAQ ── -->
+    <section class="content-section dark-section" id="faq">
+      <div class="content-inner">
+        <h2 class="section-centered-title light">Häufige Fragen</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Brauche ich eine Überweisung?<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>Für gesetzlich Versicherte ist in der Regel eine Verordnung vom Arzt erforderlich. Selbstzahler und Privatpatienten können direkt einen Termin vereinbaren.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Wie lange dauert eine Behandlung?<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>Eine Behandlungseinheit dauert je nach Verordnung und Therapieform zwischen 20 und 60 Minuten.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Welche Krankenkassen werden akzeptiert?<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>Wir arbeiten mit allen gesetzlichen und privaten Krankenkassen zusammen. Auch Selbstzahler sind herzlich willkommen.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Wie schnell bekomme ich einen Termin?<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>Wir bemühen uns, Ihnen zeitnah einen Termin anzubieten. Nutzen Sie unser Kontaktformular oder rufen Sie uns direkt an.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="brand assets/Logo_erste Idee_ohne Hintergrund.png" alt="Function Physiotherapie">
+          <p class="footer-tagline">Evidenzbasierte Physiotherapie für einen Körper, der sich wieder wie er selbst anfühlt.</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Leistungen</p>
+          <ul class="footer-links">
+            <li><a href="leistungen.html#manuelle-therapie">Manuelle Therapie</a></li>
+            <li><a href="leistungen.html#krankengymnastik">Krankengymnastik</a></li>
+            <li><a href="leistungen.html#kgg">KGG – Gerätegestützt</a></li>
+            <li><a href="leistungen.html#mld">Manuelle Lymphdrainage</a></li>
+            <li><a href="leistungen.html#personal-training">Personal Training</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Über uns</p>
+          <ul class="footer-links">
+            <li><a href="team.html">Team</a></li>
+            <li><a href="team.html#praxis">Praxis</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Kontakt</p>
+          <ul class="footer-links">
+            <li><a href="kontakt.html">Termin buchen</a></li>
+            <li><a href="kontakt.html">Anfahrt</a></li>
+            <li><a href="kontakt.html">Öffnungszeiten</a></li>
+            <li><a href="kontakt.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Function Physiotherapie. Alle Rechte vorbehalten.</p>
+        <div class="footer-legal">
+          <a href="agb.html">AGB</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="impressum.html">Impressum</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.querySelector('.nav-hamburger');
+    var overlay = document.querySelector('.mobile-menu-overlay');
+    if (!btn || !overlay) return;
+    btn.addEventListener('click', function() {
+      var open = overlay.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      overlay.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        overlay.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+  </script>
+
+  <script>
+  (function() {
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(o) {
+          o.classList.remove('open');
+          o.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>

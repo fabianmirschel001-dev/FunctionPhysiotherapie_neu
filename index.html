@@ -404,8 +404,14 @@
     function startAutoplay() {
       clearInterval(autoplayTimer);
       autoplayTimer = setInterval(function() {
-        currentIndex = (currentIndex + 1) % cards.length;
-        scrollToIndex(currentIndex);
+        var max = grid.scrollWidth - grid.clientWidth;
+        if (grid.scrollLeft >= max - 2) {
+          grid.scrollTo({ left: 0, behavior: 'smooth' });
+          currentIndex = 0;
+        } else {
+          currentIndex = (currentIndex + 1) % cards.length;
+          grid.scrollBy({ left: cardScrollAmount(), behavior: 'smooth' });
+        }
       }, 3000);
     }
 

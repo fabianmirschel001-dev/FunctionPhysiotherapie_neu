@@ -88,6 +88,23 @@
     </div>
   </footer>
 
+  <!-- ── ARTISTIC BACKGROUND CANVAS ── -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <script>
+  (function () {
+    var canvas = document.getElementById('bg-canvas');
+    var ctx = canvas.getContext('2d');
+    var palette = ['#d6cec6','#b5a898','#ede8e2','#c8d6da','#dce6e9','#e8e0d8','#c0b8af','#cfdee3'];
+    var blendModes = ['multiply','soft-light','overlay'];
+    function drawShape(x,y,size,color,rotation,alpha,blend,seed){ctx.save();ctx.globalAlpha=alpha;ctx.globalCompositeOperation=blend;ctx.translate(x,y);ctx.rotate(rotation);ctx.beginPath();var steps=12;for(var k=0;k<steps;k++){var angle=(k/steps)*Math.PI*2;var r=size*(0.72+0.28*Math.sin(angle*3.5+seed));var px=Math.cos(angle)*r;var py=Math.sin(angle)*r;if(k===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);}ctx.closePath();ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=size*0.22;ctx.fill();ctx.restore();}
+    var shapes=[];
+    function generateShapes(){shapes=[];for(var i=0;i<14;i++){shapes.push({rx:Math.random(),ry:Math.random(),size:180+Math.random()*300,color:palette[Math.floor(Math.random()*palette.length)],rotation:Math.random()*Math.PI*2,alpha:0.28+Math.random()*0.32,blend:blendModes[Math.floor(Math.random()*blendModes.length)],seed:Math.random()*Math.PI*2});}}
+    function draw(){var w=window.innerWidth,h=window.innerHeight;ctx.clearRect(0,0,w,h);var base=ctx.createLinearGradient(0,0,w*0.6,h);base.addColorStop(0,'#f7f4f0');base.addColorStop(0.45,'#f0ece6');base.addColorStop(1,'#e8e3dc');ctx.fillStyle=base;ctx.fillRect(0,0,w,h);var r1=ctx.createRadialGradient(w*0.88,h*0.08,0,w*0.88,h*0.08,w*0.45);r1.addColorStop(0,'rgba(61,122,138,0.20)');r1.addColorStop(1,'rgba(61,122,138,0)');ctx.fillStyle=r1;ctx.fillRect(0,0,w,h);var r2=ctx.createRadialGradient(w*0.08,h*0.92,0,w*0.08,h*0.92,w*0.38);r2.addColorStop(0,'rgba(44,83,100,0.16)');r2.addColorStop(1,'rgba(44,83,100,0)');ctx.fillStyle=r2;ctx.fillRect(0,0,w,h);for(var i=0;i<shapes.length;i++){var s=shapes[i];drawShape(s.rx*w,s.ry*h,s.size,s.color,s.rotation,s.alpha,s.blend,s.seed);}}
+    function resize(){var dpr=window.devicePixelRatio||1;canvas.width=window.innerWidth*dpr;canvas.height=window.innerHeight*dpr;canvas.style.width=window.innerWidth+'px';canvas.style.height=window.innerHeight+'px';ctx.setTransform(1,0,0,1,0,0);ctx.scale(dpr,dpr);draw();}
+    generateShapes();resize();window.addEventListener('resize',resize);
+  })();
+  </script>
+
   <script>
   (function() {
     var btn = document.querySelector('.nav-hamburger');

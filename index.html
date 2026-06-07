@@ -379,11 +379,19 @@
     var btnNext = document.querySelector('.slider-btn-next');
     if (!grid || !btnPrev || !btnNext) return;
 
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.service-card'));
+    var currentIndex = 0;
+    var autoplayTimer = null;
+
     function cardScrollAmount() {
-      var card = grid.querySelector('.service-card');
+      var card = cards[0];
       if (!card) return 300;
       var gap = parseFloat(getComputedStyle(grid).gap) || 24;
       return card.offsetWidth + gap;
+    }
+
+    function scrollToIndex(index) {
+      grid.scrollTo({ left: index * cardScrollAmount(), behavior: 'smooth' });
     }
 
     function updateBtns() {
@@ -393,15 +401,35 @@
       btnNext.classList.toggle('slider-hidden', sl >= max - 1);
     }
 
+    function startAutoplay() {
+      clearInterval(autoplayTimer);
+      autoplayTimer = setInterval(function() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        scrollToIndex(currentIndex);
+      }, 3000);
+    }
+
     btnPrev.addEventListener('click', function() {
-      grid.scrollBy({ left: -cardScrollAmount(), behavior: 'smooth' });
+      currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+      scrollToIndex(currentIndex);
+      if (window.innerWidth > 768) { startAutoplay(); }
     });
+
     btnNext.addEventListener('click', function() {
-      grid.scrollBy({ left: cardScrollAmount(), behavior: 'smooth' });
+      currentIndex = (currentIndex + 1) % cards.length;
+      scrollToIndex(currentIndex);
+      if (window.innerWidth > 768) { startAutoplay(); }
     });
 
     grid.addEventListener('scroll', updateBtns, { passive: true });
     updateBtns();
+
+    /* ── AUTOPLAY – Desktop only ── */
+    if (window.innerWidth > 768) {
+      grid.addEventListener('mouseenter', function() { clearInterval(autoplayTimer); });
+      grid.addEventListener('mouseleave', startAutoplay);
+      startAutoplay();
+    }
   })();
 
   /* ── CAROUSEL DOTS (Mobile only) ── */

@@ -1303,6 +1303,24 @@ nav.nav-hero .nav-icon-link:active {
   opacity: 1;
 }
 
+/* phone number text (desktop only) */
+.nav-phone-text {
+  display: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (min-width: 769px) {
+  .nav-phone-text { display: inline; }
+  .nav-icon-link[aria-label="Telefon"] svg { display: none; }
+  .nav-icon-link[aria-label="Telefon"] { min-width: unset; }
+}
+
 /* ── HAMBURGER ── */
 .nav-hamburger {
   display: none;

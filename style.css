@@ -1254,39 +1254,54 @@ footer {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 0.625rem;
+  gap: 14px;
   flex-shrink: 0;
 }
 
 .nav-icon-link,
 .nav-icon-link:link,
-.nav-icon-link:visited {
-  display: flex;
+.nav-icon-link:visited,
+.nav-icon-link:hover,
+.nav-icon-link:active {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--teal-dark);
   background: none;
   text-decoration: none;
-  opacity: 0.65;
-  min-width: 36px;
-  min-height: 36px;
-  transition: opacity 0.2s ease, color 0.6s ease;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
 }
 
-.nav-icon-link:active { color: var(--teal-dark); }
+.nav-icon-link {
+  opacity: 0.65;
+  min-width: 36px;
+  min-height: 36px;
+  transition: color 0.3s ease, opacity 0.2s ease;
+}
+
 .nav-icon-link svg { display: block; pointer-events: none; }
 .nav-icon-link:hover { opacity: 1; }
 .nav-icon-link:focus:not(:focus-visible) { outline: none; }
 .nav-icon-link:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 2px; border-radius: 2px; }
 
+nav:not(.nav-hero) .nav-icon-link,
+nav:not(.nav-hero) .nav-icon-link:link,
+nav:not(.nav-hero) .nav-icon-link:visited,
+nav:not(.nav-hero) .nav-icon-link:active {
+  color: var(--teal-dark);
+}
+
 nav.nav-hero .nav-icon-link,
 nav.nav-hero .nav-icon-link:link,
-nav.nav-hero .nav-icon-link:visited { color: rgba(255,255,255,0.75); }
+nav.nav-hero .nav-icon-link:visited {
+  color: rgba(255,255,255,0.75);
+}
 nav.nav-hero .nav-icon-link:hover,
-nav.nav-hero .nav-icon-link:active { color: #fff; opacity: 1; }
+nav.nav-hero .nav-icon-link:active {
+  color: #fff;
+  opacity: 1;
+}
 
 /* ── HAMBURGER ── */
 .nav-hamburger {

@@ -1391,6 +1391,8 @@ nav.nav-hero .nav-icon-link:active {
   .nav-cta { display: none; }
   .nav-contact-icons { margin-left: auto; flex-direction: row-reverse; gap: 0.25rem; }
   .nav-hamburger { display: flex; margin-left: 0; }
+  .nav-phone-text { display: none; }
+  .nav-icon-link[aria-label="Telefon"] svg { display: block; }
 
   /* Hero */
   .hero-scroll-hint { display: none; }

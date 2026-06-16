@@ -1265,11 +1265,15 @@ footer {
   text-decoration: none;
   min-width: 36px;
   min-height: 36px;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.6s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.nav-icon-link svg { display: block; }
+.nav-icon-link svg { display: block; pointer-events: none; }
 .nav-icon-link:hover { opacity: 1; }
+.nav-icon-link:focus:not(:focus-visible) { outline: none; }
 .nav-icon-link:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 2px; border-radius: 2px; }
 
 nav.nav-hero .nav-icon-link { color: rgba(255,255,255,0.75); }

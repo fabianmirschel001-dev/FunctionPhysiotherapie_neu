@@ -1248,6 +1248,33 @@ footer {
 
 .footer-legal a:hover { opacity: 0.65; }
 
+/* ── NAV CONTACT ICONS ── */
+.nav-contact-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+.nav-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal-dark);
+  opacity: 0.65;
+  text-decoration: none;
+  min-width: 36px;
+  min-height: 36px;
+  transition: opacity 0.2s ease;
+}
+
+.nav-icon-link svg { display: block; }
+.nav-icon-link:hover { opacity: 1; }
+.nav-icon-link:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 2px; border-radius: 2px; }
+
+nav.nav-hero .nav-icon-link { color: rgba(255,255,255,0.75); }
+nav.nav-hero .nav-icon-link:hover { color: #fff; opacity: 1; }
+
 /* ── HAMBURGER ── */
 .nav-hamburger {
   display: none;
@@ -1316,7 +1343,8 @@ footer {
   nav { justify-content: space-between; }
   .nav-links { display: none; }
   .nav-cta { display: none; }
-  .nav-hamburger { display: flex; margin-left: auto; }
+  .nav-contact-icons { margin-left: auto; flex-direction: row-reverse; gap: 0.25rem; }
+  .nav-hamburger { display: flex; margin-left: 0; }
 
   /* Hero */
   .hero-scroll-hint { display: none; }

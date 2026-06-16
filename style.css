@@ -2267,7 +2267,10 @@ main { padding-top: 88px; }
 /* ── ERÖFFNUNGS-POPUP ── */
 .eroeffnung-overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -2275,15 +2278,11 @@ main { padding-top: 88px; }
   background: rgba(0, 0, 0, 0.6);
   opacity: 0;
   transition: opacity 0.3s ease;
-  pointer-events: none;
 }
 
 .eroeffnung-overlay[hidden] { display: none; }
 
-.eroeffnung-overlay.is-open {
-  opacity: 1;
-  pointer-events: auto;
-}
+.eroeffnung-overlay.is-open { opacity: 1; }
 
 .eroeffnung-modal {
   position: relative;
@@ -2298,9 +2297,7 @@ main { padding-top: 88px; }
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.eroeffnung-overlay.is-open .eroeffnung-modal {
-  transform: translateY(0);
-}
+.eroeffnung-overlay.is-open .eroeffnung-modal { transform: translateY(0); }
 
 .eroeffnung-titel {
   font-family: 'Cormorant Garamond', Georgia, serif;
@@ -2317,7 +2314,7 @@ main { padding-top: 88px; }
   line-height: 1.7;
   color: var(--teal-dark);
   opacity: 0.85;
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.25rem;
 }
 
 .eroeffnung-ok {
@@ -2335,6 +2332,7 @@ main { padding-top: 88px; }
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
   box-shadow: 0 2px 12px rgba(26, 53, 64, 0.25);
+  min-height: 44px;
 }
 
 .eroeffnung-ok:hover { background: var(--teal-mid); transform: translateY(-1px); }
@@ -2352,11 +2350,35 @@ main { padding-top: 88px; }
   cursor: pointer;
   padding: 4px 8px;
   transition: color 0.2s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .eroeffnung-close:hover { color: var(--teal-dark); }
 
+/* ── Mobile: Bottom Sheet ── */
 @media (max-width: 768px) {
-  .eroeffnung-modal { padding: 2rem 1.5rem; }
+  .eroeffnung-overlay { align-items: flex-end; }
+
+  .eroeffnung-modal {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 2rem 1.5rem calc(2rem + env(safe-area-inset-bottom, 0px));
+    transform: translateY(100%);
+    box-shadow: 0 -4px 32px rgba(26, 53, 64, 0.15);
+  }
+
+  .eroeffnung-overlay.is-open .eroeffnung-modal { transform: translateY(0); }
+
   .eroeffnung-titel { font-size: 1.75rem; }
+
+  .eroeffnung-ok {
+    width: 100%;
+    display: block;
+    padding: 0.875rem 2rem;
+  }
 }

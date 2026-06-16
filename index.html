@@ -569,12 +569,10 @@
 
     function openPopup() {
       overlay.removeAttribute('hidden');
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() {
-          overlay.classList.add('is-open');
-          document.body.style.overflow = 'hidden';
-        });
-      });
+      setTimeout(function() {
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }, 20);
     }
 
     function closePopup() {

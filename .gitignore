@@ -2,5 +2,6 @@ node_modules/
 dist/
 temporary screenshots/
 .claude/
+source-images/
 *.png
 !brand assets/*.png

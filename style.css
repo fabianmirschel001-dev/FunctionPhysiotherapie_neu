@@ -59,50 +59,37 @@ nav {
   gap: 2rem;
 }
 
-.nav-logo {
-  display: none;
-}
-
 .nav-home {
   display: flex;
   align-items: center;
   flex-shrink: 0;
   text-decoration: none;
   position: relative;
+  height: 72px;
 }
 
-.nav-home-label {
-  white-space: nowrap;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--teal-dark);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.nav-home-img {
+.nav-logo-light,
+.nav-logo-dark {
   height: 72px;
   width: auto;
   object-fit: contain;
   display: block;
-  opacity: 1;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.5s ease;
 }
 
-nav.nav-hero .nav-home-img {
-  opacity: 0;
+.nav-logo-dark {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.nav-logo img {
-  height: 72px;
-  object-fit: contain;
-}
+/* Scrolled / subpage state: show dark logo */
+.nav-logo-light { opacity: 0; }
+.nav-logo-dark  { opacity: 1; }
+
+/* Hero state (index.html top): show white logo */
+nav.nav-hero .nav-logo-light { opacity: 1; }
+nav.nav-hero .nav-logo-dark  { opacity: 0; }
 
 .nav-links {
   display: flex;
@@ -152,7 +139,6 @@ nav.nav-hero .nav-links a:hover { color: #fff; opacity: 1; }
 nav.nav-hero .nav-links a::after { background: rgba(255,255,255,0.5); }
 nav.nav-hero .nav-cta { background: rgba(255,255,255,0.15); color: #fff; box-shadow: none; border: 1px solid rgba(255,255,255,0.35); }
 nav.nav-hero .nav-cta:hover { background: rgba(255,255,255,0.25); }
-nav.nav-hero .nav-logo img { filter: brightness(0) invert(1); }
 
 .nav-cta {
   background: var(--teal-dark);
@@ -328,7 +314,6 @@ nav.nav-hero .nav-logo img { filter: brightness(0) invert(1); }
   height: 140px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
   opacity: 0.95;
 }
 
@@ -1172,7 +1157,6 @@ footer {
 
 .footer-brand img {
   height: 110px;
-  filter: brightness(0) invert(1);
   margin-bottom: 1.25rem;
   object-fit: contain;
   display: block;

@@ -59,37 +59,27 @@ nav {
   gap: 2rem;
 }
 
-.nav-home {
+.nav-logo {
   display: flex;
   align-items: center;
   flex-shrink: 0;
   text-decoration: none;
-  position: relative;
   height: 72px;
 }
 
-.nav-logo-light,
-.nav-logo-dark {
+.nav-logo img {
   height: 72px;
   width: auto;
   object-fit: contain;
-  display: block;
-  transition: opacity 0.5s ease;
 }
 
-.nav-logo-dark {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+/* Scrolled / subpage: colored logo */
+.nav-logo-light { display: none; }
+.nav-logo-dark  { display: block; }
 
-/* Scrolled / subpage state: show dark logo */
-.nav-logo-light { opacity: 0; }
-.nav-logo-dark  { opacity: 1; }
-
-/* Hero state (index.html top): show white logo */
-nav.nav-hero .nav-logo-light { opacity: 1; }
-nav.nav-hero .nav-logo-dark  { opacity: 0; }
+/* Hero state (index.html top): white logo */
+nav.nav-hero .nav-logo-light { display: block; }
+nav.nav-hero .nav-logo-dark  { display: none; }
 
 .nav-links {
   display: flex;

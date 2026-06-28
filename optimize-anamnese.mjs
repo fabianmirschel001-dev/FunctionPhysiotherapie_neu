@@ -10,7 +10,7 @@ console.log(`Source: ${srcMeta.width}x${srcMeta.height}, ${(srcSize / 1024 / 102
 
 async function build(quality) {
   await sharp(SRC)
-    .resize({ width: 600, withoutEnlargement: true })
+    .resize({ width: 1200, withoutEnlargement: true })
     .withMetadata(false)
     .webp({ quality })
     .toFile(OUT);

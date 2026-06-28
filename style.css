@@ -657,6 +657,11 @@ nav.nav-hero .nav-cta:hover { background: rgba(255,255,255,0.25); }
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
 }
 
+/* Focal-point corrections for landscape photos in portrait cards */
+a[href="leistungen.html#krankengymnastik"] img { object-position: center 30%; }
+a[href="leistungen.html#kgg"]              img { object-position: center 30%; }
+a[href="leistungen.html#kg-zns"]           img { object-position: center 30%; }
+
 .service-card:hover img {
   transform: scale(1.04);
   filter: grayscale(0%);
@@ -831,7 +836,7 @@ nav.nav-hero .nav-cta:hover { background: rgba(255,255,255,0.25); }
 .dark-image {
   border-radius: 2px;
   overflow: hidden;
-  aspect-ratio: 4/5;
+  aspect-ratio: 2/3;
   position: relative;
   box-shadow:
     0 8px 48px rgba(0, 0, 0, 0.35),
@@ -1436,7 +1441,7 @@ nav.nav-hero .nav-icon-link:active {
   .dark-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .feature-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .feature-image { height: auto; aspect-ratio: 4/3; }
-  .dark-image { aspect-ratio: 4/5; }
+  .dark-image { aspect-ratio: 2/3; }
   .dark-section .btn-primary {
     width: 100%;
     box-sizing: border-box;

@@ -1463,10 +1463,10 @@ nav.nav-hero .nav-icon-link:active {
   .cta-actions a { width: 100%; box-sizing: border-box; justify-content: center; text-align: center; min-height: 44px; }
 
   /* Footer */
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer-top { grid-template-columns: 1fr; gap: 0; }
   .footer-brand { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; text-align: center; }
   .footer-brand img { height: 112px; }
-  .footer-top > div:last-child { grid-column: 1 / -1; }
+  .footer-top > div:not(.footer-brand) { display: none; }
   .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; }
   .footer-links a { padding: 0.625rem 0; min-height: 44px; display: flex; align-items: center; }
 }

@@ -1352,6 +1352,7 @@ nav.nav-hero .nav-icon-link:active {
   .feature-inner.reverse { direction: ltr; }
   .feature-image { height: auto; aspect-ratio: 3/2; }
   .dark-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .dark-image { height: clamp(320px, 65vh, 700px); aspect-ratio: unset; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .footer-brand { grid-column: 1 / -1; }
   .hero-logo-wrap img { height: 110px; }
@@ -1437,7 +1438,7 @@ nav.nav-hero .nav-icon-link:active {
   .dark-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .feature-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .feature-image { height: auto; aspect-ratio: 4/3; }
-  .dark-image { aspect-ratio: 2/3; }
+  .dark-image { height: auto; aspect-ratio: 2/3; }
   .dark-section .btn-primary {
     width: 100%;
     box-sizing: border-box;

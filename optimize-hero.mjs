@@ -1,26 +1,38 @@
 import sharp from 'sharp';
 import { stat } from 'fs/promises';
 
-const src = 'source-images/hero-original.jpg';
+const SRC = 'source-images/hero.jpg';
 
 async function build(outPath, width, quality) {
-  await sharp(src)
+  await sharp(SRC)
     .resize({ width, withoutEnlargement: true })
+    .withMetadata(false)
     .webp({ quality })
     .toFile(outPath);
   const { size } = await stat(outPath);
   const meta = await sharp(outPath).metadata();
-  console.log(`${outPath}: ${meta.width}x${meta.height}, ${(size/1024).toFixed(0)} KB (quality ${quality})`);
+  console.log(`${outPath}: ${meta.width}x${meta.height}, ${(size / 1024).toFixed(0)} KB (q${quality})`);
   return size;
 }
 
-const desktopSize = await build('images/hero.webp', 2560, 80);
-if (desktopSize > 400 * 1024) {
-  console.log('hero.webp > 400 KB – retrying at quality 75…');
-  await build('images/hero.webp', 2560, 75);
+const { size: srcSize } = await stat(SRC);
+console.log(`Source: ${(srcSize / 1024 / 1024).toFixed(1)} MB\n`);
+
+// Desktop: max 2560px, target ≤ 450 KB
+let deskSize = await build('images/hero-desktop.webp', 2560, 82);
+for (let q = 79; deskSize > 450 * 1024 && q >= 70; q -= 3) {
+  console.log(`  hero-desktop.webp > 450 KB – retrying at q${q}…`);
+  deskSize = await build('images/hero-desktop.webp', 2560, q);
 }
 
-await build('images/hero-mobile.webp', 1280, 80);
+// Mobile: max 1400px, target ≤ 250 KB
+let mobSize = await build('images/hero-mobile.webp', 1400, 80);
+for (let q = 77; mobSize > 250 * 1024 && q >= 70; q -= 3) {
+  console.log(`  hero-mobile.webp > 250 KB – retrying at q${q}…`);
+  mobSize = await build('images/hero-mobile.webp', 1400, q);
+}
 
-const { size: srcSize } = await stat(src);
-console.log(`\nOriginal: ${(srcSize/1024/1024).toFixed(1)} MB`);
+console.log(`\nFinal sizes:`);
+console.log(`  hero-desktop.webp: ${(deskSize / 1024).toFixed(0)} KB`);
+console.log(`  hero-mobile.webp:  ${(mobSize / 1024).toFixed(0)} KB`);
+console.log(`  Original: ${(srcSize / 1024 / 1024).toFixed(1)} MB → saved ${((1 - (deskSize + mobSize) / srcSize) * 100).toFixed(0)}%`);

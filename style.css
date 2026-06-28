@@ -262,32 +262,32 @@ nav.nav-hero .nav-cta:hover { background: rgba(255,255,255,0.25); }
 }
 
 /* ── HERO NEW (full-bleed cinematic) ── */
+/* Focal point: adjust --hero-focus to keep subject visible,
+   e.g. "center 30%" to show upper area, "40% center" to pan left. */
 .hero-new {
   position: relative;
   height: 100dvh;
   min-height: 600px;
   overflow: hidden;
   isolation: isolate;
+  background-image: url('images/hero-desktop.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: var(--hero-focus, center center);
 }
 
-.hero-bg-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(22%);
-  z-index: 0;
+@media (max-width: 768px) {
+  .hero-new {
+    background-image: url('images/hero-mobile.webp');
+  }
 }
 
 .hero-bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg,
-    rgba(237, 232, 226, 0.42) 0%,
-    rgba(44, 83, 100, 0.35)   45%,
-    rgba(26, 53, 64, 0.88)    100%
+  background: linear-gradient(to bottom,
+    rgba(20, 40, 48, 0.45) 0%,
+    rgba(20, 40, 48, 0.65) 100%
   );
   z-index: 1;
 }

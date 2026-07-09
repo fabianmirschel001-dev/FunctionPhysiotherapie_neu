@@ -2,7 +2,7 @@ import sharp from 'sharp';
 import { stat } from 'fs/promises';
 
 const JOBS = [
-  { src: 'source-images/Manuelle Therapie.jpg',  out: 'images/leistung-manuelle-therapie.webp' },
+  { src: 'source-images/MT_Leistungen_2.jpg',    out: 'images/leistung-manuelle-therapie.webp' },
   { src: 'source-images/Krankengymnastik.jpg',    out: 'images/leistung-krankengymnastik.webp'  },
   { src: 'source-images/KG-Geräte.jpg',           out: 'images/leistung-kgg.webp'               },
   { src: 'source-images/KG-ZNS.jpg',              out: 'images/leistung-kg-zns.webp'            },

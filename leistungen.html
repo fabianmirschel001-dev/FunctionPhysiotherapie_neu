@@ -66,268 +66,360 @@
     </div>
   </section>
 
-  <!-- ══ 1. MANUELLE THERAPIE ══ -->
-  <section class="service-section" id="manuelle-therapie">
-    <div class="service-inner">
-      <div class="service-image">
-        <img src="https://placehold.co/720x540/d6cec6/1a3540?text=+&font=lato" alt="Manuelle Therapie" />
-        <div class="service-image-accent"></div>
-      </div>
-      <div class="service-content">
-        <span class="section-label">01</span>
-        <h2>Manuelle<br /><em>Therapie</em></h2>
-        <div class="divider"></div>
-        <p>
-          Die Manuelle Therapie ist eine spezialisierte Form der Physiotherapie, bei der gezielte Handgrifftechniken eingesetzt werden, um Funktionsstörungen an Gelenken, Muskeln und Faszien zu erkennen und zu behandeln.
-        </p>
-        <p>
-          Durch präzise Mobilisations- und Manipulationstechniken werden eingeschränkte Beweglichkeit, Schmerzen und muskuläre Dysbalancen gezielt behoben – nachhaltig und ohne unnötige Belastung.
-        </p>
-        <div class="benefit-list">
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Gezielte Behandlung von Gelenk- und Weichteilproblemen</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Effektiv bei Rücken-, Schulter-, Nacken- und Kniebeschwerden</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Schnelle Schmerzreduktion durch manuelle Mobilisation</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Verbesserung der Beweglichkeit und Körperhaltung</span>
-          </div>
-        </div>
-        <div class="service-cta">
-          <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ══ THERAPIE-ACCORDION ══ -->
+  <section class="services-accordion">
+    <div class="accordion-list">
 
-  <!-- ══ 2. KRANKENGYMNASTIK ══ -->
-  <section class="service-section" id="krankengymnastik">
-    <div class="service-inner reverse">
-      <div class="service-image">
-        <img src="https://placehold.co/720x540/c4b5a0/1a3540?text=+&font=lato" alt="Krankengymnastik" />
-        <div class="service-image-accent"></div>
-      </div>
-      <div class="service-content">
-        <span class="section-label">02</span>
-        <h2>Kranken-<br /><em>gymnastik</em></h2>
-        <div class="divider"></div>
-        <p>
-          Die Krankengymnastik bildet das Herzstück der klassischen Physiotherapie. Durch individuell abgestimmte Übungsprogramme werden Kraft, Koordination, Beweglichkeit und Ausdauer gezielt gefördert.
-        </p>
-        <p>
-          Ob nach einer Operation, bei chronischen Beschwerden oder zur Prävention – wir entwickeln ein Programm, das exakt auf Ihren Körper und Ihre Ziele zugeschnitten ist und langfristige Ergebnisse erzielt.
-        </p>
-        <div class="benefit-list">
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+      <!-- 1. Manuelle Therapie -->
+      <div class="accordion-item" id="manuelle-therapie">
+        <h3 class="accordion-heading">
+          <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="panel-manuelle-therapie" id="trigger-manuelle-therapie">
+            <span class="accordion-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>
+                <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
+                <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
+                <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+              </svg>
+            </span>
+            <span class="accordion-title">Manuelle Therapie</span>
+            <span class="accordion-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion-panel" id="panel-manuelle-therapie" role="region" aria-labelledby="trigger-manuelle-therapie">
+          <div class="accordion-panel-inner">
+            <div class="accordion-panel-image">
+              <img src="images/leistung-manuelle-therapie.webp" alt="Manuelle Therapie – gezielte Handgrifftechniken an Gelenken und Muskulatur" loading="lazy" />
             </div>
-            <span>Individueller Therapieplan nach Befunderhebung</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            <div class="accordion-panel-content">
+              <p>
+                Die Manuelle Therapie ist eine spezialisierte Form der Physiotherapie, bei der gezielte Handgrifftechniken eingesetzt werden, um Funktionsstörungen an Gelenken, Muskeln und Faszien zu erkennen und zu behandeln.
+              </p>
+              <p>
+                Durch präzise Mobilisations- und Manipulationstechniken werden eingeschränkte Beweglichkeit, Schmerzen und muskuläre Dysbalancen gezielt behoben – nachhaltig und ohne unnötige Belastung.
+              </p>
+              <div class="benefit-list">
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Gezielte Behandlung von Gelenk- und Weichteilproblemen</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Effektiv bei Rücken-, Schulter-, Nacken- und Kniebeschwerden</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Schnelle Schmerzreduktion durch manuelle Mobilisation</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Verbesserung der Beweglichkeit und Körperhaltung</span>
+                </div>
+              </div>
+              <div class="service-cta">
+                <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
+              </div>
             </div>
-            <span>Rehabilitation nach Operationen und Verletzungen</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Stärkung der tiefen Rumpf- und Stabilisatoren-Muskulatur</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Heimübungsprogramm für nachhaltige Ergebnisse</span>
           </div>
         </div>
-        <div class="service-cta">
-          <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
-        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ══ 3. KRANKENGYMNASTIK AM GERÄT ══ -->
-  <section class="service-section" id="kgg">
-    <div class="service-inner">
-      <div class="service-image">
-        <img src="https://placehold.co/720x540/b5a898/1a3540?text=+&font=lato" alt="Krankengymnastik am Gerät" />
-        <div class="service-image-accent"></div>
-      </div>
-      <div class="service-content">
-        <span class="section-label">03</span>
-        <h2>KGG – Geräte-<br /><em>gestützte Therapie</em></h2>
-        <div class="divider"></div>
-        <p>
-          Die Krankengymnastik am Gerät (KGG) kombiniert gezielte therapeutische Übungen mit modernen Trainingsgeräten. Durch kontrollierte Belastung und präzise Dosierung werden Muskulatur, Stabilität und Funktion systematisch aufgebaut.
-        </p>
-        <p>
-          Besonders effektiv in der Nachsorge orthopädischer Eingriffe und bei muskulären Dysbalancen – mit klaren Fortschrittskontrollen und kontinuierlicher Anpassung des Programms.
-        </p>
-        <div class="benefit-list">
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+      <!-- 2. Krankengymnastik -->
+      <div class="accordion-item" id="krankengymnastik">
+        <h3 class="accordion-heading">
+          <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="panel-krankengymnastik" id="trigger-krankengymnastik">
+            <span class="accordion-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </span>
+            <span class="accordion-title">Krankengymnastik</span>
+            <span class="accordion-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion-panel" id="panel-krankengymnastik" role="region" aria-labelledby="trigger-krankengymnastik">
+          <div class="accordion-panel-inner">
+            <div class="accordion-panel-image">
+              <img src="images/leistung-krankengymnastik.webp" alt="Krankengymnastik – individuelles Übungsprogramm" loading="lazy" />
             </div>
-            <span>Kontrollierter Muskelaufbau mit therapeutischem Fokus</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            <div class="accordion-panel-content">
+              <p>
+                Die Krankengymnastik bildet das Herzstück der klassischen Physiotherapie. Durch individuell abgestimmte Übungsprogramme werden Kraft, Koordination, Beweglichkeit und Ausdauer gezielt gefördert.
+              </p>
+              <p>
+                Ob nach einer Operation, bei chronischen Beschwerden oder zur Prävention – wir entwickeln ein Programm, das exakt auf Ihren Körper und Ihre Ziele zugeschnitten ist und langfristige Ergebnisse erzielt.
+              </p>
+              <div class="benefit-list">
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Individueller Therapieplan nach Befunderhebung</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Rehabilitation nach Operationen und Verletzungen</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Stärkung der tiefen Rumpf- und Stabilisatoren-Muskulatur</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Heimübungsprogramm für nachhaltige Ergebnisse</span>
+                </div>
+              </div>
+              <div class="service-cta">
+                <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
+              </div>
             </div>
-            <span>Effektive Nachsorge nach Gelenk- und Wirbelsäulen-OPs</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Individuelle Belastungssteuerung und Fortschrittskontrolle</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Verbesserung der neuromuskulären Koordination</span>
           </div>
         </div>
-        <div class="service-cta">
-          <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
-        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ══ 4. KG ZNS ══ -->
-  <section class="service-section" id="kg-zns">
-    <div class="service-inner reverse">
-      <div class="service-image">
-        <img src="https://placehold.co/600x400/1e4a52/d6cec6" alt="KG ZNS – Neurologische Krankengymnastik" />
-        <div class="service-image-accent"></div>
-      </div>
-      <div class="service-content">
-        <span class="section-label">04</span>
-        <h2>KG ZNS – Neurologische<br /><em>Krankengymnastik</em></h2>
-        <div class="divider"></div>
-        <p>
-          Die neurologische Krankengymnastik (KG ZNS) richtet sich an Menschen mit Erkrankungen oder Verletzungen des zentralen Nervensystems – darunter Schlaganfall, Multiple Sklerose, Morbus Parkinson oder Schädel-Hirn-Trauma.
-        </p>
-        <p>
-          Im Mittelpunkt steht die gezielte Förderung von Bewegung, Koordination und Alltagsfunktion. Wir arbeiten nach dem PNF-Konzept (Propriozeptive Neuromuskuläre Fazilitation) – einem etablierten Therapieansatz, der gezielt neuromuskuläre Verbindungen aktiviert, um verloren gegangene Bewegungsmuster neu zu erlernen und bestehende Fähigkeiten systematisch auszubauen.
-        </p>
-        <div class="service-cta">
-          <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
+      <!-- 3. KGG – Gerätegestützte Therapie -->
+      <div class="accordion-item" id="kgg">
+        <h3 class="accordion-heading">
+          <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="panel-kgg" id="trigger-kgg">
+            <span class="accordion-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6.5 6.5 11 11"/>
+                <path d="m21 21-1-1"/>
+                <path d="m3 3 1 1"/>
+                <path d="m18 22 4-4"/>
+                <path d="m2 6 4-4"/>
+                <path d="m3 10 7-7"/>
+                <path d="m14 21 7-7"/>
+              </svg>
+            </span>
+            <span class="accordion-title">KGG – Gerätegestützt</span>
+            <span class="accordion-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion-panel" id="panel-kgg" role="region" aria-labelledby="trigger-kgg">
+          <div class="accordion-panel-inner">
+            <div class="accordion-panel-image">
+              <img src="images/leistung-kgg.webp" alt="Krankengymnastik am Gerät – kontrollierter Muskelaufbau" loading="lazy" />
+            </div>
+            <div class="accordion-panel-content">
+              <p>
+                Die Krankengymnastik am Gerät (KGG) kombiniert gezielte therapeutische Übungen mit modernen Trainingsgeräten. Durch kontrollierte Belastung und präzise Dosierung werden Muskulatur, Stabilität und Funktion systematisch aufgebaut.
+              </p>
+              <p>
+                Besonders effektiv in der Nachsorge orthopädischer Eingriffe und bei muskulären Dysbalancen – mit klaren Fortschrittskontrollen und kontinuierlicher Anpassung des Programms.
+              </p>
+              <div class="benefit-list">
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Kontrollierter Muskelaufbau mit therapeutischem Fokus</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Effektive Nachsorge nach Gelenk- und Wirbelsäulen-OPs</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Individuelle Belastungssteuerung und Fortschrittskontrolle</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Verbesserung der neuromuskulären Koordination</span>
+                </div>
+              </div>
+              <div class="service-cta">
+                <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ══ 5. MANUELLE LYMPHDRAINAGE ══ -->
-  <section class="service-section" id="mld">
-    <div class="service-inner reverse">
-      <div class="service-image">
-        <img src="https://placehold.co/600x400/2c5364/d6cec6" alt="Manuelle Lymphdrainage" />
-        <div class="service-image-accent"></div>
-      </div>
-      <div class="service-content">
-        <span class="section-label">04</span>
-        <h2>Manuelle<br /><em>Lymphdrainage</em></h2>
-        <div class="divider"></div>
-        <p>
-          Die Manuelle Lymphdrainage (MLD) ist eine sanfte Entstauungstherapie, die den Lymphfluss im Körper anregt. Sie wird eingesetzt bei Ödemen, nach Operationen, bei Sportverletzungen sowie zur allgemeinen Entlastung des Lymphsystems.
-        </p>
-        <div class="benefit-list">
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+      <!-- 4. KG ZNS -->
+      <div class="accordion-item" id="kg-zns">
+        <h3 class="accordion-heading">
+          <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="panel-kg-zns" id="trigger-kg-zns">
+            <span class="accordion-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+                <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+                <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>
+                <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/>
+                <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/>
+                <path d="M3.477 10.896a4 4 0 0 1 .585-.396"/>
+                <path d="M19.938 10.5a4 4 0 0 1 .585.396"/>
+                <path d="M6 18a4 4 0 0 1-1.967-.516"/>
+                <path d="M19.967 17.484A4 4 0 0 1 18 18"/>
+              </svg>
+            </span>
+            <span class="accordion-title">KG ZNS</span>
+            <span class="accordion-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion-panel" id="panel-kg-zns" role="region" aria-labelledby="trigger-kg-zns">
+          <div class="accordion-panel-inner">
+            <div class="accordion-panel-image">
+              <img src="images/leistung-kg-zns.webp" alt="KG ZNS – Neurologische Krankengymnastik" loading="lazy" />
             </div>
-            <span>Sanfte Behandlung bei Ödemen und Schwellungen</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            <div class="accordion-panel-content">
+              <p>
+                Die neurologische Krankengymnastik (KG ZNS) richtet sich an Menschen mit Erkrankungen oder Verletzungen des zentralen Nervensystems – darunter Schlaganfall, Multiple Sklerose, Morbus Parkinson oder Schädel-Hirn-Trauma.
+              </p>
+              <p>
+                Im Mittelpunkt steht die gezielte Förderung von Bewegung, Koordination und Alltagsfunktion. Wir arbeiten nach dem PNF-Konzept (Propriozeptive Neuromuskuläre Fazilitation) – einem etablierten Therapieansatz, der gezielt neuromuskuläre Verbindungen aktiviert, um verloren gegangene Bewegungsmuster neu zu erlernen und bestehende Fähigkeiten systematisch auszubauen.
+              </p>
+              <div class="service-cta">
+                <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
+              </div>
             </div>
-            <span>Effektiv nach Operationen und Verletzungen</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Anregung des Lymphflusses und Entlastung des Lymphsystems</span>
           </div>
         </div>
-        <div class="service-cta">
-          <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
-        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ══ 5. PERSONAL TRAINING ══ -->
-  <section class="service-section" id="personal-training">
-    <div class="service-inner">
-      <div class="service-image">
-        <img src="https://placehold.co/720x540/1a3540/d6cec6?text=+&font=lato" alt="Personal Training" />
-        <div class="service-image-accent"></div>
-      </div>
-      <div class="service-content">
-        <span class="section-label">05</span>
-        <h2>Personal<br /><em>Training</em></h2>
-        <div class="divider"></div>
-        <p>
-          Unser Coaching-Ansatz geht über die klassische Therapie hinaus. Gemeinsam erarbeiten wir langfristige Strategien für Ihre Gesundheit – von Bewegungsgewohnheiten über Haltungskorrektur bis hin zu mentaler Stärke und Körperbewusstsein.
-        </p>
-        <p>
-          Ideal für Menschen, die nicht nur Beschwerden behandeln, sondern sich aktiv und dauerhaft in ihrer Gesundheit verbessern möchten. Ein ganzheitlicher Begleiter auf dem Weg zu Ihrem besten Ich.
-        </p>
-        <div class="benefit-list">
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+      <!-- 5. Manuelle Lymphdrainage -->
+      <div class="accordion-item" id="mld">
+        <h3 class="accordion-heading">
+          <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="panel-mld" id="trigger-mld">
+            <span class="accordion-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.5-4 6.5s-3 3.5-3 5.5a7 7 0 0 0 7 7Z"/>
+              </svg>
+            </span>
+            <span class="accordion-title">Manuelle Lymphdrainage</span>
+            <span class="accordion-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion-panel" id="panel-mld" role="region" aria-labelledby="trigger-mld">
+          <div class="accordion-panel-inner">
+            <div class="accordion-panel-image">
+              <img src="images/leistung-mld.webp" alt="Manuelle Lymphdrainage – sanfte Entstauungstherapie" loading="lazy" />
             </div>
-            <span>Ganzheitliche Bewegungs- und Gesundheitsberatung</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            <div class="accordion-panel-content">
+              <p>
+                Die Manuelle Lymphdrainage (MLD) ist eine sanfte Entstauungstherapie, die den Lymphfluss im Körper anregt. Sie wird eingesetzt bei Ödemen, nach Operationen, bei Sportverletzungen sowie zur allgemeinen Entlastung des Lymphsystems.
+              </p>
+              <div class="benefit-list">
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Sanfte Behandlung bei Ödemen und Schwellungen</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Effektiv nach Operationen und Verletzungen</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Anregung des Lymphflusses und Entlastung des Lymphsystems</span>
+                </div>
+              </div>
+              <div class="service-cta">
+                <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
+              </div>
             </div>
-            <span>Prävention und Leistungsoptimierung im Alltag</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Mentale Stärke, Stressmanagement und Körperbewusstsein</span>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span>Langfristige Begleitung mit messbaren Ergebnissen</span>
           </div>
         </div>
-        <div class="service-cta">
-          <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
+      </div>
+
+      <!-- 6. Personal Training -->
+      <div class="accordion-item" id="personal-training">
+        <h3 class="accordion-heading">
+          <button type="button" class="accordion-trigger" aria-expanded="false" aria-controls="panel-personal-training" id="trigger-personal-training">
+            <span class="accordion-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+            </span>
+            <span class="accordion-title">Personal Training</span>
+            <span class="accordion-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="accordion-panel" id="panel-personal-training" role="region" aria-labelledby="trigger-personal-training">
+          <div class="accordion-panel-inner">
+            <div class="accordion-panel-image">
+              <img src="images/leistung-personal-training.webp" alt="Personal Training – ganzheitliches Coaching für Ihre Gesundheit" loading="lazy" />
+            </div>
+            <div class="accordion-panel-content">
+              <p>
+                Unser Coaching-Ansatz geht über die klassische Therapie hinaus. Gemeinsam erarbeiten wir langfristige Strategien für Ihre Gesundheit – von Bewegungsgewohnheiten über Haltungskorrektur bis hin zu mentaler Stärke und Körperbewusstsein.
+              </p>
+              <p>
+                Ideal für Menschen, die nicht nur Beschwerden behandeln, sondern sich aktiv und dauerhaft in ihrer Gesundheit verbessern möchten. Ein ganzheitlicher Begleiter auf dem Weg zu Ihrem besten Ich.
+              </p>
+              <div class="benefit-list">
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Ganzheitliche Bewegungs- und Gesundheitsberatung</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Prävention und Leistungsoptimierung im Alltag</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Mentale Stärke, Stressmanagement und Körperbewusstsein</span>
+                </div>
+                <div class="benefit-item">
+                  <div class="benefit-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>Langfristige Begleitung mit messbaren Ergebnissen</span>
+                </div>
+              </div>
+              <div class="service-cta">
+                <a href="kontakt.html" class="btn-primary">Termin vereinbaren</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -479,6 +571,74 @@
     generateShapes();
     resize();
     window.addEventListener('resize', resize);
+  })();
+  </script>
+
+  <script>
+  (function() {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.accordion-item'));
+    if (!items.length) return;
+
+    function setPanelHeight(item) {
+      var panel = item.querySelector('.accordion-panel');
+      if (item.classList.contains('open')) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    }
+
+    function closeItem(item) {
+      var btn = item.querySelector('.accordion-trigger');
+      var panel = item.querySelector('.accordion-panel');
+      item.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      panel.style.maxHeight = '0px';
+    }
+
+    function openItem(item) {
+      items.forEach(function(other) {
+        if (other !== item && other.classList.contains('open')) closeItem(other);
+      });
+      var btn = item.querySelector('.accordion-trigger');
+      var panel = item.querySelector('.accordion-panel');
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+
+    items.forEach(function(item) {
+      var trigger = item.querySelector('.accordion-trigger');
+      var panel = item.querySelector('.accordion-panel');
+
+      trigger.addEventListener('click', function() {
+        if (item.classList.contains('open')) {
+          closeItem(item);
+        } else {
+          openItem(item);
+        }
+      });
+
+      panel.querySelectorAll('img').forEach(function(img) {
+        img.addEventListener('load', function() { setPanelHeight(item); });
+      });
+    });
+
+    window.addEventListener('resize', function() {
+      items.forEach(setPanelHeight);
+    });
+
+    function openFromHash() {
+      var hash = window.location.hash.replace('#', '');
+      if (!hash) return;
+      var target = document.getElementById(hash);
+      if (!target || !target.classList.contains('accordion-item')) return;
+      openItem(target);
+      window.requestAnimationFrame(function() {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
   })();
   </script>
 

@@ -1598,6 +1598,120 @@ nav.nav-hero .nav-icon-link:active {
   margin-top: 2.25rem;
 }
 
+/* ── LEISTUNGEN ACCORDION ── */
+.services-accordion {
+  padding: 4.5rem 2rem 5.5rem;
+}
+
+.accordion-list {
+  max-width: 920px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(26, 53, 64, 0.12);
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(26, 53, 64, 0.12);
+  scroll-margin-top: 112px;
+}
+
+.accordion-heading {
+  font: inherit;
+  margin: 0;
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.accordion-trigger:focus-visible {
+  outline: 2px solid var(--teal-light);
+  outline-offset: -2px;
+  border-radius: 2px;
+}
+
+.accordion-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal-light);
+}
+.accordion-icon svg { width: 24px; height: 24px; }
+
+.accordion-title {
+  flex: 1;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 400;
+  color: var(--teal-dark);
+  transition: color 0.25s ease;
+}
+
+.accordion-trigger:hover .accordion-title { color: var(--teal-light); }
+.accordion-item.open .accordion-title { color: var(--teal-light); }
+
+.accordion-chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--teal-dark);
+  opacity: 0.45;
+  transition: transform 0.35s ease;
+}
+.accordion-chevron svg { width: 20px; height: 20px; }
+.accordion-item.open .accordion-chevron { transform: rotate(180deg); opacity: 0.8; }
+
+.accordion-panel {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+.accordion-item.open .accordion-panel { opacity: 1; }
+
+.accordion-panel-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 0.5rem 0.25rem 2.75rem;
+}
+
+.accordion-panel-image img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 2px;
+  filter: grayscale(10%) brightness(0.97);
+}
+
+.accordion-panel-content p {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .services-accordion { padding: 3.5rem 1.5rem 4rem; }
+  .accordion-trigger { padding: 1.25rem 0; gap: 0.875rem; }
+  .accordion-title { font-size: 1.125rem; }
+  .accordion-panel-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 0.5rem 0 2.25rem; }
+}
+
 /* ── CTA BAND (leistungen) ── */
 .cta-band {
   background: var(--teal-dark);

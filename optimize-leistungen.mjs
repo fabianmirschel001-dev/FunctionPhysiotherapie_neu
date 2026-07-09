@@ -10,6 +10,8 @@ const JOBS = [
   { src: 'source-images/Personal_Training.jpg',   out: 'images/leistung-personal-training.webp' },
   // Homepage-Karussell nutzt für Manuelle Therapie bewusst ein anderes Foto als leistungen.html
   { src: 'source-images/Manuelle Therapie.jpg',   out: 'images/manuelle-therapie-karussell.webp' },
+  // leistungen.html nutzt für Krankengymnastik bewusst ein anderes Foto als das Homepage-Karussell
+  { src: 'source-images/KG_Leistungen.jpg',       out: 'images/leistung-krankengymnastik-detail.webp' },
 ];
 
 async function build(src, outPath, quality) {

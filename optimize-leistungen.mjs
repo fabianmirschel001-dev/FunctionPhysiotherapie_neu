@@ -12,6 +12,8 @@ const JOBS = [
   { src: 'source-images/Manuelle Therapie.jpg',   out: 'images/manuelle-therapie-karussell.webp' },
   // leistungen.html nutzt für Krankengymnastik bewusst ein anderes Foto als das Homepage-Karussell
   { src: 'source-images/KG_Leistungen.jpg',       out: 'images/leistung-krankengymnastik-detail.webp' },
+  // leistungen.html nutzt für KG ZNS bewusst ein anderes Foto als das Homepage-Karussell
+  { src: 'source-images/KG-ZNS_Leistung.jpg',     out: 'images/leistung-kg-zns-detail.webp' },
 ];
 
 async function build(src, outPath, quality) {

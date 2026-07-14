@@ -1698,6 +1698,10 @@ nav.nav-hero .nav-icon-link:active {
   filter: grayscale(10%) brightness(0.97);
 }
 
+.img-focus-mld {
+  object-position: center 20%;
+}
+
 .accordion-panel-content p {
   font-size: 0.9375rem;
   font-weight: 300;

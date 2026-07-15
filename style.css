@@ -2363,6 +2363,49 @@ main { padding-top: 88px; }
   color: rgba(26,53,64,0.45);
 }
 
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── FORM STATUS (Erfolg / Fehler) ── */
+.form-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  margin-top: 1.25rem;
+  padding: 0.9375rem 1.125rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.form-status svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.form-status.success {
+  background: rgba(61,122,138,0.12);
+  border: 1px solid rgba(61,122,138,0.3);
+  color: var(--teal-dark);
+}
+
+.form-status.success svg { color: var(--teal-light); }
+
+.form-status.error {
+  background: rgba(178,90,66,0.1);
+  border: 1px solid rgba(178,90,66,0.3);
+  color: #7a3b2a;
+}
+
+.form-status.error svg { color: #b25a42; }
+
 /* ── 24H CANCELLATION INFOBOX ── */
 .cancellation-box {
   background: rgba(181,168,152,0.14);

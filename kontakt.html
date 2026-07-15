@@ -115,8 +115,12 @@
       <div class="content-inner contact-layout">
         <div class="contact-form-col">
           <h2 class="contact-info-title">Schreiben Sie uns eine Nachricht</h2>
-          <!-- FORMULAR: Formspree oder eigenen Endpoint hier einbinden, action="" entsprechend setzen -->
-          <form class="contact-form" action="" method="POST">
+          <!-- WEB3FORMS: Access Key im Web3Forms-Dashboard erzeugen und hier eintragen -->
+          <form class="contact-form" id="kontaktForm" action="" method="POST">
+            <input type="hidden" name="access_key" value="DEIN-WEB3FORMS-ACCESS-KEY">
+            <input type="hidden" name="subject" value="Neue Patientenanfrage über die Website">
+            <input type="hidden" name="from_name" value="Function Physiotherapie Website">
+            <input type="checkbox" name="botcheck" style="display:none">
             <div class="form-row">
               <div class="form-group">
                 <label for="vorname">Vorname</label>
@@ -133,7 +137,7 @@
             </div>
             <div class="form-group">
               <label for="telefon">Telefon <span class="optional">(optional)</span></label>
-              <input type="tel" id="telefon" name="telefon">
+              <input type="tel" id="telefon" name="phone">
             </div>
             <div class="form-group">
               <label for="anliegen">Anliegen</label>
@@ -145,17 +149,18 @@
             </div>
             <div class="form-group">
               <label for="nachricht">Ihre Nachricht</label>
-              <textarea id="nachricht" name="nachricht" rows="5" required></textarea>
+              <textarea id="nachricht" name="message" rows="5" required></textarea>
             </div>
             <div class="form-group form-checkbox">
-              <input type="checkbox" id="datenschutz" name="datenschutz" required>
+              <input type="checkbox" id="datenschutz" name="datenschutz">
               <label for="datenschutz">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.</label>
             </div>
             <div class="form-submit-group">
-              <button type="submit" class="btn-primary">Nachricht senden</button>
+              <button type="submit" class="btn-primary" id="formSubmitBtn">Nachricht senden</button>
               <p class="form-disclaimer">Bitte senden Sie keine sensiblen Gesundheitsdaten über das Formular.</p>
             </div>
           </form>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite" hidden></div>
 
           <div class="cancellation-box">
             <div class="cancellation-box-title">
@@ -412,6 +417,66 @@
       iframe.setAttribute('allowfullscreen', '');
       embed.innerHTML = '';
       embed.appendChild(iframe);
+    });
+  })();
+  </script>
+
+  <script>
+  (function() {
+    var form = document.getElementById('kontaktForm');
+    var submitBtn = document.getElementById('formSubmitBtn');
+    var statusEl = document.getElementById('formStatus');
+    var datenschutz = document.getElementById('datenschutz');
+    if (!form || !submitBtn || !statusEl || !datenschutz) return;
+
+    var originalBtnText = submitBtn.textContent;
+    var successIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>';
+    var errorIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+
+    function showStatus(type, message) {
+      statusEl.className = 'form-status ' + type;
+      statusEl.innerHTML = (type === 'success' ? successIcon : errorIcon) + '<span>' + message + '</span>';
+      statusEl.hidden = false;
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (!datenschutz.checked) {
+        showStatus('error', 'Bitte bestätigen Sie die Datenschutzerklärung, um fortzufahren.');
+        return;
+      }
+
+      var formData = new FormData(form);
+      var vollerName = (formData.get('vorname') + ' ' + formData.get('nachname')).trim();
+      formData.set('name', vollerName);
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Wird gesendet…';
+      statusEl.hidden = true;
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+          if (data.success) {
+            form.reset();
+            form.style.display = 'none';
+            showStatus('success', 'Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.');
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+            showStatus('error', 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.');
+          }
+        })
+        .catch(function() {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+          showStatus('error', 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.');
+        });
     });
   })();
   </script>

@@ -1703,6 +1703,11 @@ nav.nav-hero .nav-icon-link:active {
   object-position: center 25%;
 }
 
+.accordion-panel-image img.img-focus-personal-training {
+  aspect-ratio: 3 / 4;
+  object-position: center 25%;
+}
+
 .accordion-panel-content p {
   font-size: 0.9375rem;
   font-weight: 300;

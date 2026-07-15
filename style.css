@@ -1698,8 +1698,9 @@ nav.nav-hero .nav-icon-link:active {
   filter: grayscale(10%) brightness(0.97);
 }
 
-.img-focus-mld {
-  object-position: center 20%;
+.accordion-panel-image img.img-focus-mld {
+  aspect-ratio: 3 / 4;
+  object-position: center 25%;
 }
 
 .accordion-panel-content p {

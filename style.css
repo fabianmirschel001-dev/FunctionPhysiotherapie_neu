@@ -2258,6 +2258,99 @@ main { padding-top: 88px; }
   color: rgba(26,53,64,0.65);
 }
 
+/* ── TEAM CARD ACCORDION (Werdegang & Qualifikationen) ── */
+.accordion-item-compact {
+  border-top: 1px solid rgba(26, 53, 64, 0.12);
+  margin-top: 1.5rem;
+}
+
+.accordion-item-compact .accordion-trigger { padding: 1rem 0; gap: 0.75rem; }
+.accordion-item-compact .accordion-icon { width: 20px; height: 20px; }
+.accordion-item-compact .accordion-icon svg { width: 20px; height: 20px; }
+.accordion-item-compact .accordion-title { font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 500; }
+.accordion-item-compact .accordion-chevron { width: 16px; height: 16px; }
+.accordion-item-compact .accordion-chevron svg { width: 16px; height: 16px; }
+
+.accordion-panel-body { padding: 0.25rem 0.25rem 1.5rem; }
+
+/* ── VERTICAL TIMELINE ── */
+.timeline { position: relative; }
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.125rem;
+  padding-bottom: 1.5rem;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+/* Line segment per row: node-center to row-bottom, so it stays aligned
+   through the next node's center regardless of how tall the text is. */
+.timeline-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  bottom: 0;
+  left: 15px;
+  width: 1px;
+  background: rgba(26, 53, 64, 0.15);
+}
+
+.timeline-node-slot {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.timeline-dot-major {
+  width: 30px;
+  height: 30px;
+  background: var(--teal-dark);
+}
+
+.timeline-dot-major svg { width: 15px; height: 15px; color: var(--cream); }
+
+.timeline-dot-minor {
+  width: 20px;
+  height: 20px;
+  background: var(--white);
+  border: 1.5px solid var(--teal-light);
+}
+
+.timeline-dot-minor svg { width: 9px; height: 9px; color: var(--teal-light); }
+
+.timeline-content { flex: 1; padding-top: 0.4rem; min-width: 0; }
+
+.timeline-period {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--teal-dark);
+}
+
+.timeline-text {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(26, 53, 64, 0.7);
+}
+
 /* ── PRAXIS GALLERY ── */
 .praxis-gallery {
   display: grid;

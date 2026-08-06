@@ -2958,6 +2958,48 @@ main { padding-top: 88px; }
   margin-bottom: 0.75rem;
 }
 
+.legal-page ul {
+  margin: 0 0 1rem 1.25rem;
+}
+
+.legal-page li {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(26,53,64,0.75);
+}
+
+.legal-page code {
+  font-family: monospace;
+  font-size: 0.875em;
+  color: var(--teal-dark);
+}
+
+.legal-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+}
+
+.legal-page th,
+.legal-page td {
+  text-align: left;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(26,53,64,0.75);
+  border-bottom: 1px solid rgba(181,168,152,0.25);
+}
+
+.legal-page th {
+  font-weight: 500;
+  color: var(--teal-dark);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* ── NAV ACTIVE STATE ── */
 .nav-links a.active { opacity: 1; }
 

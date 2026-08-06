@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="presentation" aria-hidden="true">
+  <title>Platzhalter Teamfoto</title>
+  <rect width="400" height="400" fill="#1a3540"/>
+  <path d="M200 92c-38 0-66 30-66 72l-7 92c-1 11 6 18 17 18h112c11 0 18-7 17-18l-7-92c0-42-28-72-66-72z" fill="#2c5364"/>
+  <rect x="184" y="206" width="32" height="74" rx="16" fill="#3d7a8a"/>
+  <circle cx="200" cy="172" r="50" fill="#3d7a8a"/>
+  <path d="M84 400c0-70 52-124 116-124s116 54 116 124z" fill="#2c5364"/>
+  <text x="200" y="378" fill="#b5a898" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="4" text-anchor="middle">FOTO FOLGT</text>
+</svg>

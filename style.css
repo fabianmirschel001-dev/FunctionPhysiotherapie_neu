@@ -2258,6 +2258,28 @@ main { padding-top: 88px; }
   color: rgba(26,53,64,0.65);
 }
 
+/* ── TEAM CHIPS (Spezialgebiete / Zuständigkeiten) ── */
+.team-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.team-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid rgba(61, 122, 138, 0.3);
+  border-radius: 999px;
+  background: rgba(61, 122, 138, 0.06);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal-mid);
+}
+
 /* ── TEAM CARD ACCORDION (Werdegang & Qualifikationen) ── */
 .accordion-item-compact {
   border-top: 1px solid rgba(26, 53, 64, 0.12);

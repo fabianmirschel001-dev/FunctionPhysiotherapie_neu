@@ -2221,10 +2221,29 @@ main { padding-top: 88px; }
 }
 
 .team-img-wrap {
+  position: relative;
   aspect-ratio: 1/1;
   overflow: hidden;
   border-radius: 2px;
   margin-bottom: 1.25rem;
+}
+
+.team-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--teal-dark);
+  color: var(--cream);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 12px rgba(26, 53, 64, 0.18);
 }
 
 .team-img-wrap img {
@@ -2968,6 +2987,8 @@ main { padding-top: 88px; }
   .pillar-grid { grid-template-columns: 1fr; gap: 1.25rem; }
 
   .team-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+  .team-badge { top: 0.5rem; left: 0.5rem; padding: 0.25rem 0.625rem; }
 
   .praxis-gallery { grid-template-columns: 1fr; gap: 1rem; }
 

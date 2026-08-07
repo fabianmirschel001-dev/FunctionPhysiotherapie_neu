@@ -396,17 +396,82 @@
 
   <script>
   (function() {
-    var consent = document.getElementById('mapsConsent');
-    var loadBtn = document.getElementById('mapsLoadBtn');
     var embed = document.getElementById('mapsEmbed');
-    if (!consent || !loadBtn || !embed) return;
+    var originalGate = document.getElementById('mapsPlaceholder');
+    if (!embed || !originalGate) return;
 
-    consent.addEventListener('change', function() {
-      loadBtn.disabled = !consent.checked;
-    });
+    var STORAGE_KEY = 'mapsConsent';
 
-    loadBtn.addEventListener('click', function() {
-      if (!consent.checked) return;
+    function storageAvailable() {
+      try {
+        var testKey = '__storage_test__';
+        window.localStorage.setItem(testKey, '1');
+        window.localStorage.removeItem(testKey);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    var canUseStorage = storageAvailable();
+
+    function isWithinSixMonths(timestamp) {
+      var given = new Date(timestamp);
+      var expires = new Date(given.getTime());
+      expires.setMonth(expires.getMonth() + 6);
+      return Date.now() < expires.getTime();
+    }
+
+    function readConsent() {
+      if (!canUseStorage) return false;
+      try {
+        var raw = window.localStorage.getItem(STORAGE_KEY);
+        if (!raw) return false;
+        var data = JSON.parse(raw);
+        return !!(data && typeof data.timestamp === 'number' && isWithinSixMonths(data.timestamp));
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function writeConsent() {
+      if (!canUseStorage) return;
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ timestamp: Date.now() }));
+      } catch (e) {}
+    }
+
+    function clearConsent() {
+      if (!canUseStorage) return;
+      try {
+        window.localStorage.removeItem(STORAGE_KEY);
+      } catch (e) {}
+    }
+
+    function bindGate(gateEl) {
+      var consent = gateEl.querySelector('#mapsConsent');
+      var loadBtn = gateEl.querySelector('#mapsLoadBtn');
+      if (!consent || !loadBtn) return;
+      consent.addEventListener('change', function() {
+        loadBtn.disabled = !consent.checked;
+      });
+      loadBtn.addEventListener('click', function() {
+        if (!consent.checked) return;
+        writeConsent();
+        renderMap();
+      });
+    }
+
+    function renderGate() {
+      embed.innerHTML = '';
+      var gate = originalGate.cloneNode(true);
+      embed.appendChild(gate);
+      bindGate(gate);
+    }
+
+    function renderMap() {
+      embed.innerHTML = '';
+
       var iframe = document.createElement('iframe');
       iframe.src = 'https://www.google.com/maps?q=Gl%C3%BCcksburger+Stra%C3%9Fe+122,+24943+Flensburg&output=embed';
       iframe.title = 'Anfahrt Function Physiotherapie';
@@ -414,9 +479,24 @@
       iframe.className = 'maps-iframe';
       iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
       iframe.setAttribute('allowfullscreen', '');
-      embed.innerHTML = '';
       embed.appendChild(iframe);
-    });
+
+      var revokeBtn = document.createElement('button');
+      revokeBtn.type = 'button';
+      revokeBtn.className = 'maps-revoke-link';
+      revokeBtn.textContent = 'Kartenfreigabe widerrufen';
+      revokeBtn.addEventListener('click', function() {
+        clearConsent();
+        renderGate();
+      });
+      embed.appendChild(revokeBtn);
+    }
+
+    if (readConsent()) {
+      renderMap();
+    } else {
+      bindGate(originalGate);
+    }
   })();
   </script>
 

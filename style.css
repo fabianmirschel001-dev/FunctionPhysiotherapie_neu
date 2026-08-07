@@ -2875,6 +2875,25 @@ main { padding-top: 88px; }
   display: block;
 }
 
+.maps-revoke-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(26, 53, 64, 0.45);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.maps-revoke-link:hover { color: var(--teal-dark); }
+.maps-revoke-link:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 2px; }
+
 /* ── FAQ ACCORDION ── */
 .faq-list { max-width: 800px; margin: 0 auto; }
 

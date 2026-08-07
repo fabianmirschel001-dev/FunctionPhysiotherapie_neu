@@ -1844,6 +1844,14 @@ nav.nav-hero .nav-icon-link:active {
   color: rgba(26, 53, 64, 0.68);
 }
 
+.preise-desc + .preise-desc { margin-top: 0.75rem; }
+
+.preise-gkv {
+  margin-bottom: 3rem;
+}
+
+.preise-gkv .icon-heading { margin-bottom: 1.25rem; }
+
 .preise-grid {
   display: grid;
   grid-template-columns: 3fr 2fr;

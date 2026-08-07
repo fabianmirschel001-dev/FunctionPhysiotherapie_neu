@@ -1809,6 +1809,7 @@ nav.nav-hero .nav-icon-link:active {
 /* ── PREISE ── */
 .preise-section {
   padding: 0 2rem 5.5rem;
+  scroll-margin-top: 108px;
 }
 
 .preise-inner {
@@ -2948,6 +2949,14 @@ main { padding-top: 88px; }
   font-weight: 400;
   color: var(--teal-dark);
   margin: 2rem 0 0.75rem;
+}
+
+.legal-page h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--teal-dark);
+  margin: 1.5rem 0 0.5rem;
 }
 
 .legal-page p {

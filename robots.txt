@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://function-physio-flensburg.de/sitemap.xml

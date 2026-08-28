@@ -29,9 +29,15 @@
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
         "opens": "08:00",
-        "closes": "19:00"
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Friday"],
+        "opens": "08:00",
+        "closes": "15:00"
       }
     ]
   }
@@ -202,7 +208,11 @@
             </div>
             <table class="hours-table">
               <tbody>
-                <tr><td>Mo–Fr</td><td>08:00 – 19:00 Uhr</td></tr>
+                <tr><td>Mo</td><td>08:00 – 18:00 Uhr</td></tr>
+                <tr><td>Di</td><td>08:00 – 18:00 Uhr</td></tr>
+                <tr><td>Mi</td><td>08:00 – 18:00 Uhr</td></tr>
+                <tr><td>Do</td><td>08:00 – 18:00 Uhr</td></tr>
+                <tr><td>Fr</td><td>08:00 – 15:00 Uhr</td></tr>
                 <tr><td>Sa</td><td>geschlossen</td></tr>
                 <tr><td>So</td><td>geschlossen</td></tr>
               </tbody>

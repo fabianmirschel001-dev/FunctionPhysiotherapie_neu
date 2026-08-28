@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "node serve.mjs",
-    "build": "node build.mjs",
-    "deploy": "npm run build && npx wrangler deploy"
+    "dev": "node serve.mjs"
   },
   "keywords": [],
   "author": "",

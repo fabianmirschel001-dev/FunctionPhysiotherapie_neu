@@ -1420,6 +1420,14 @@ nav.nav-hero .nav-icon-link:active {
   .hero-logo-wrap img { height: 110px; }
   .google-reviews-header { align-items: flex-start; }
   .google-review-card { width: calc(50% - 0.75rem); min-width: 0; }
+
+  /* Nav CTA text grew ("Termin online buchen") — reclaim space so it doesn't overflow between the desktop nav and the 768px hamburger breakpoint */
+  nav { gap: 1.25rem; padding: 0 1.5rem; }
+  .nav-links { gap: 0.875rem; }
+  .nav-links a { font-size: 0.75rem; letter-spacing: 0.06em; }
+  .nav-phone-text { display: none; }
+  .nav-icon-link[aria-label="Telefon"] svg { display: block; }
+  .nav-cta { font-size: 0.75rem; padding: 0.625rem 1.125rem; letter-spacing: 0.05em; }
 }
 
 @media (max-width: 768px) {

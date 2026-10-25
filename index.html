@@ -107,21 +107,6 @@
 </head>
 <body>
 
-  <!-- ── ERÖFFNUNGS-POPUP ── -->
-  <div class="eroeffnung-overlay" id="eroeffnungPopup" role="dialog"
-       aria-modal="true" aria-labelledby="eroeffnungTitel" hidden>
-    <div class="eroeffnung-modal">
-      <button class="eroeffnung-close" aria-label="Schließen">&times;</button>
-      <h2 class="eroeffnung-titel" id="eroeffnungTitel">Wir eröffnen!</h2>
-      <p class="eroeffnung-text">
-        Function Physiotherapie Flensburg öffnet ab dem <strong>01.10.2026</strong>
-        die Türen. Schauen Sie sich gerne schon jetzt in Ruhe um.
-      </p>
-      <p class="eroeffnung-text">Wir freuen uns auf Sie!</p>
-      <button class="eroeffnung-ok">OK</button>
-    </div>
-  </div>
-
   <!-- ── NAVIGATION ── -->
   <nav>
     <a href="index.html" class="nav-logo" aria-label="Startseite">
@@ -273,26 +258,34 @@
   </section>
 
   <!-- ── GOOGLE REVIEWS ── -->
-  <section class="google-reviews-section">
+  <section class="google-reviews-section" id="googleReviewsSection">
     <div class="google-reviews-inner">
       <div class="google-reviews-header">
         <div>
           <div class="section-label anim-el">Google Bewertungen</div>
           <h2 class="google-reviews-headline anim-el" data-delay="1">Was unsere Patienten sagen.</h2>
         </div>
+        <div class="google-rating-bar" id="googleRatingBar" hidden>
+          <div class="google-rating-score" id="googleRatingScore">
+            <span class="google-rating-num" id="googleRatingNum"></span>
+          </div>
+          <div class="google-rating-divider"></div>
+          <span class="google-rating-count" id="googleRatingCount"></span>
+        </div>
       </div>
 
-      <!-- ELFSIGHT GOOGLE REVIEWS WIDGET: Platzhalter-div unten durch Elfsight-Embed-Code ersetzen. Widget-Code von elfsight.com generieren, dann das div.reviews-widget-placeholder durch den Elfsight-Snippet austauschen. -->
-      <div class="reviews-widget-placeholder">
-        <p class="reviews-placeholder-text">
-          Hier könnte Ihre 5-Sterne-Bewertung stehen. ⭐<br>
-          Wir arbeiten noch daran, uns die ersten zu verdienen –<br>
-          Sie könnten der Erste sein!
-        </p>
+      <div class="reviews-widget-placeholder" id="reviewsPlaceholder">
+        <p class="reviews-placeholder-text">Bewertungen werden geladen …</p>
       </div>
 
-      <div style="text-align: center;">
-        <a href="#" class="reviews-google-link">Auf Google bewerten →</a>
+      <div class="cards-slider-wrap" id="reviewsSliderWrap" hidden>
+        <button type="button" class="slider-btn slider-btn-prev slider-hidden" aria-label="Zurück" id="reviewsBtnPrev">&#8592;</button>
+        <div class="cards-grid" id="reviewsCardsGrid"></div>
+        <button type="button" class="slider-btn slider-btn-next slider-hidden" aria-label="Weiter" id="reviewsBtnNext">&#8594;</button>
+      </div>
+
+      <div class="reviews-cta-row">
+        <a href="#" class="reviews-google-link" id="reviewsGoogleLink" target="_blank" rel="noopener" hidden>Auf Google bewerten →</a>
       </div>
     </div>
   </section>
@@ -493,13 +486,18 @@
     });
   })();
 
-  (function() {
-    var grid = document.querySelector('.cards-grid');
-    var btnPrev = document.querySelector('.slider-btn-prev');
-    var btnNext = document.querySelector('.slider-btn-next');
-    if (!grid || !btnPrev || !btnNext) return;
+  function initCardSlider(opts) {
+    var grid = opts.grid;
+    var btnPrev = opts.btnPrev;
+    var btnNext = opts.btnNext;
+    if (!grid || !btnPrev || !btnNext) return null;
 
-    var cards = Array.prototype.slice.call(grid.querySelectorAll('.service-card'));
+    var cardSelector = opts.cardSelector;
+    var autoplayMs = opts.autoplayMs || 0;
+    var reducedMotion = !!opts.respectReducedMotion &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var cards = Array.prototype.slice.call(grid.querySelectorAll(cardSelector));
     var currentIndex = 0;
     var autoplayTimer = null;
 
@@ -522,6 +520,7 @@
     }
 
     function startAutoplay() {
+      if (!autoplayMs || reducedMotion) return;
       clearInterval(autoplayTimer);
       autoplayTimer = setInterval(function() {
         var max = grid.scrollWidth - grid.clientWidth;
@@ -532,7 +531,7 @@
           currentIndex = (currentIndex + 1) % cards.length;
           grid.scrollBy({ left: cardScrollAmount(), behavior: 'smooth' });
         }
-      }, 3000);
+      }, autoplayMs);
     }
 
     btnPrev.addEventListener('click', function() {
@@ -556,7 +555,23 @@
       grid.addEventListener('mouseleave', startAutoplay);
       startAutoplay();
     }
-  })();
+
+    return {
+      refreshCards: function() {
+        cards = Array.prototype.slice.call(grid.querySelectorAll(cardSelector));
+        currentIndex = 0;
+        updateBtns();
+      }
+    };
+  }
+
+  initCardSlider({
+    grid: document.querySelector('.cards-grid'),
+    btnPrev: document.querySelector('.slider-btn-prev'),
+    btnNext: document.querySelector('.slider-btn-next'),
+    cardSelector: '.service-card',
+    autoplayMs: 3000
+  });
 
   /* ── CAROUSEL DOTS (Mobile only) ── */
   (function() {
@@ -623,6 +638,127 @@
 
   <script>
   (function() {
+    var section = document.getElementById('googleReviewsSection');
+    var placeholder = document.getElementById('reviewsPlaceholder');
+    var ratingBar = document.getElementById('googleRatingBar');
+    var ratingNum = document.getElementById('googleRatingNum');
+    var ratingScore = document.getElementById('googleRatingScore');
+    var ratingCount = document.getElementById('googleRatingCount');
+    var sliderWrap = document.getElementById('reviewsSliderWrap');
+    var cardsGrid = document.getElementById('reviewsCardsGrid');
+    var btnPrev = document.getElementById('reviewsBtnPrev');
+    var btnNext = document.getElementById('reviewsBtnNext');
+    var googleLink = document.getElementById('reviewsGoogleLink');
+    if (!section) return;
+
+    function buildStars(rating, max) {
+      max = max || 5;
+      var filled = Math.max(0, Math.min(max, Math.round(rating) || 0));
+      var wrap = document.createElement('span');
+      wrap.className = 'google-stars-row';
+      wrap.setAttribute('role', 'img');
+      wrap.setAttribute('aria-label', filled + ' von ' + max + ' Sternen');
+      for (var i = 0; i < filled; i++) {
+        var s = document.createElement('span');
+        s.className = 'star';
+        s.setAttribute('aria-hidden', 'true');
+        s.textContent = '★';
+        wrap.appendChild(s);
+      }
+      return wrap;
+    }
+
+    function buildCard(review) {
+      var card = document.createElement('article');
+      card.className = 'google-review-card';
+
+      var top = document.createElement('div');
+      top.className = 'review-card-top';
+
+      var user = document.createElement('div');
+      user.className = 'review-card-user';
+
+      var avatar = document.createElement('div');
+      avatar.className = 'review-avatar';
+      avatar.setAttribute('aria-hidden', 'true');
+      avatar.textContent = review.initial || '?';
+
+      var nameWrap = document.createElement('div');
+      var name = document.createElement('p');
+      name.className = 'review-name';
+      name.textContent = review.author || 'Google Nutzer';
+      var date = document.createElement('p');
+      date.className = 'review-date';
+      date.textContent = review.relativeTime || '';
+      nameWrap.appendChild(name);
+      nameWrap.appendChild(date);
+
+      user.appendChild(avatar);
+      user.appendChild(nameWrap);
+
+      top.appendChild(user);
+      top.appendChild(buildStars(review.rating, 5));
+
+      var text = document.createElement('p');
+      text.className = 'review-text';
+      text.textContent = review.text || '';
+
+      card.appendChild(top);
+      card.appendChild(text);
+      return card;
+    }
+
+    function hideSection() {
+      section.hidden = true;
+    }
+
+    function render(data) {
+      if (!data || !Array.isArray(data.reviews) || data.reviews.length === 0) {
+        hideSection();
+        return;
+      }
+
+      if (typeof data.rating === 'number') {
+        ratingNum.textContent = data.rating.toFixed(1);
+        ratingScore.appendChild(buildStars(data.rating, 5));
+        ratingCount.textContent = data.total ? data.total + ' Bewertungen' : '';
+        ratingBar.hidden = false;
+      }
+
+      data.reviews.forEach(function(review) {
+        cardsGrid.appendChild(buildCard(review));
+      });
+
+      placeholder.hidden = true;
+      sliderWrap.hidden = false;
+
+      if (data.profileUrl) {
+        googleLink.href = data.profileUrl;
+        googleLink.hidden = false;
+      }
+
+      initCardSlider({
+        grid: cardsGrid,
+        btnPrev: btnPrev,
+        btnNext: btnNext,
+        cardSelector: '.google-review-card',
+        autoplayMs: 5000,
+        respectReducedMotion: true
+      });
+    }
+
+    fetch('/api/reviews')
+      .then(function(res) {
+        if (!res.ok) throw new Error('reviews-fetch-failed');
+        return res.json();
+      })
+      .then(render)
+      .catch(hideSection);
+  })();
+  </script>
+
+  <script>
+  (function() {
     var btn = document.querySelector('.nav-hamburger');
     var overlay = document.querySelector('.mobile-menu-overlay');
     if (!btn || !overlay) return;
@@ -645,48 +781,6 @@
   })();
   </script>
 
-  <script>
-  (function() {
-    var STORAGE_KEY = 'eroeffnungPopupGesehen';
-    if (sessionStorage.getItem(STORAGE_KEY)) return;
-    sessionStorage.setItem(STORAGE_KEY, 'true');
-
-    var overlay = document.getElementById('eroeffnungPopup');
-
-    function openPopup() {
-      overlay.removeAttribute('hidden');
-      setTimeout(function() {
-        overlay.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-      }, 20);
-    }
-
-    function closePopup() {
-      overlay.classList.remove('is-open');
-      overlay.addEventListener('transitionend', function handler(e) {
-        if (e.target !== overlay) return;
-        overlay.setAttribute('hidden', '');
-        document.body.style.overflow = '';
-        overlay.removeEventListener('transitionend', handler);
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', openPopup);
-    } else {
-      openPopup();
-    }
-
-    overlay.querySelector('.eroeffnung-ok').addEventListener('click', closePopup);
-    overlay.querySelector('.eroeffnung-close').addEventListener('click', closePopup);
-    overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) closePopup();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && overlay.classList.contains('is-open')) closePopup();
-    });
-  })();
-  </script>
 
 </body>
 </html>

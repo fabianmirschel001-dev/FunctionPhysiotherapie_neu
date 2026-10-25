@@ -70,6 +70,8 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+[hidden] { display: none !important; }
+
 html { scroll-behavior: smooth; }
 
 #bg-canvas {
@@ -1039,7 +1041,7 @@ a[href="leistungen.html#kg-zns"]           img { object-position: center 30%; }
   border: 1px solid rgba(26, 53, 64, 0.08);
   border-radius: 2px;
   padding: 1.75rem;
-  width: calc(33.333% - 1rem);
+  flex: 0 0 calc(33.333% - 1rem);
   min-width: 260px;
   box-shadow: 0 2px 12px rgba(26, 53, 64, 0.06);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
@@ -1133,6 +1135,8 @@ a[href="leistungen.html#kg-zns"]           img { object-position: center 30%; }
 }
 
 .reviews-google-link:hover { color: var(--teal-dark); }
+
+.reviews-cta-row { text-align: center; }
 
 /* ── CTA SECTION ── */
 .cta-section {
@@ -1419,7 +1423,7 @@ nav.nav-hero .nav-icon-link:active {
   .footer-brand { grid-column: 1 / -1; }
   .hero-logo-wrap img { height: 110px; }
   .google-reviews-header { align-items: flex-start; }
-  .google-review-card { width: calc(50% - 0.75rem); min-width: 0; }
+  .google-review-card { flex: 0 0 calc(50% - 0.75rem); min-width: 0; }
 
   /* Nav CTA text grew ("Termin online buchen") — reclaim space so it doesn't overflow between the desktop nav and the 768px hamburger breakpoint */
   nav { gap: 1.25rem; padding: 0 1.5rem; }
@@ -1477,6 +1481,11 @@ nav.nav-hero .nav-icon-link:active {
     flex: 0 0 85vw;
     max-width: 85vw;
     aspect-ratio: 3/4;
+    scroll-snap-align: start;
+  }
+  .google-review-card {
+    flex: 0 0 85vw;
+    max-width: 85vw;
     scroll-snap-align: start;
   }
   .slider-btn { display: none; }
@@ -2336,6 +2345,11 @@ main { padding-top: 88px; }
   margin-bottom: 0.25rem;
 }
 
+.team-name-suffix {
+  font-size: 0.7em;
+  color: var(--sand);
+}
+
 .team-role {
   font-size: 0.75rem;
   font-weight: 500;
@@ -3152,121 +3166,3 @@ main { padding-top: 88px; }
   .step-number { font-size: 2rem; }
 }
 
-/* ── ERÖFFNUNGS-POPUP ── */
-.eroeffnung-overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.eroeffnung-overlay[hidden] { display: none; }
-
-.eroeffnung-overlay.is-open { opacity: 1; }
-
-.eroeffnung-modal {
-  position: relative;
-  background: var(--cream);
-  max-width: 440px;
-  width: 90%;
-  border-radius: 16px;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  box-shadow: 0 8px 48px rgba(26, 53, 64, 0.18), 0 2px 12px rgba(26, 53, 64, 0.1);
-  transform: translateY(24px);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.eroeffnung-overlay.is-open .eroeffnung-modal { transform: translateY(0); }
-
-.eroeffnung-titel {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 2.25rem;
-  font-weight: 500;
-  color: var(--teal-dark);
-  margin: 0 0 1rem;
-  line-height: 1.2;
-}
-
-.eroeffnung-text {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  color: var(--teal-dark);
-  opacity: 0.85;
-  margin: 0 0 1.25rem;
-}
-
-.eroeffnung-ok {
-  display: inline-block;
-  background: var(--teal-dark);
-  color: var(--cream);
-  border: none;
-  border-radius: 2px;
-  padding: 0.625rem 2rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 2px 12px rgba(26, 53, 64, 0.25);
-  min-height: 44px;
-}
-
-.eroeffnung-ok:hover { background: var(--teal-mid); transform: translateY(-1px); }
-.eroeffnung-ok:active { transform: translateY(0); }
-
-.eroeffnung-close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--sand);
-  cursor: pointer;
-  padding: 4px 8px;
-  transition: color 0.2s ease;
-  min-width: 44px;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.eroeffnung-close:hover { color: var(--teal-dark); }
-
-/* ── Mobile: Bottom Sheet ── */
-@media (max-width: 768px) {
-  .eroeffnung-overlay { align-items: flex-end; }
-
-  .eroeffnung-modal {
-    width: 100%;
-    max-width: 100%;
-    border-radius: 20px 20px 0 0;
-    padding: 2rem 1.5rem calc(2rem + env(safe-area-inset-bottom, 0px));
-    transform: translateY(100%);
-    box-shadow: 0 -4px 32px rgba(26, 53, 64, 0.15);
-  }
-
-  .eroeffnung-overlay.is-open .eroeffnung-modal { transform: translateY(0); }
-
-  .eroeffnung-titel { font-size: 1.75rem; }
-
-  .eroeffnung-ok {
-    width: 100%;
-    display: block;
-    padding: 0.875rem 2rem;
-  }
-}
